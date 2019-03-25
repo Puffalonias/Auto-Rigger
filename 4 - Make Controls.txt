@@ -1,0 +1,3837 @@
+//Making Controls for the IK leg rig
+
+//Making L_footCTRL
+
+select L_IK_ankle;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_footCTRL";
+setAttr "L_footCTRL.rotateOrder" 2;
+setAttr "L_footCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_footCTRL;
+select L_footCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making L_footCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_footCTRL_BUFFER";
+
+select L_IK_ankle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_footCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_footCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent L_footCTRL L_footCTRL_BUFFER;
+
+//Making R_FootCTRL
+
+select R_IK_ankle;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_footCTRL";
+setAttr "R_footCTRL.rotateOrder" 2;
+setAttr "R_footCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_footCTRL;
+select R_footCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making R_footCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_footCTRL_BUFFER";
+
+select R_IK_ankle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_footCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_footCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent R_footCTRL R_footCTRL_BUFFER;
+
+//Making L_kneePV
+
+select L_IK_knee;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_kneePV";
+setAttr "L_kneePVShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_kneePV;
+select L_kneePV;
+move -r -os -wd 0 0 4;
+select L_kneePV;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making L_kneePV_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_kneePV_BUFFER";
+
+select L_kneePV;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_kneePV_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_kneePV_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent L_kneePV L_kneePV_BUFFER;
+
+//Making R_kneePV
+
+select R_IK_knee;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_kneePV";
+setAttr "R_kneePVShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_kneePV;
+select R_kneePV;
+move -r -os -wd 0 0 4;
+select R_kneePV;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making R_kneePV_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_kneePV_BUFFER";
+
+select R_kneePV;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_kneePV_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_kneePV_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent R_kneePV R_kneePV_BUFFER;
+
+//--------------------------------------------------
+
+//Making Controls for the IK arm rig
+
+//Making L_IK_armCTRL
+
+select L_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_IK_armCTRL";
+setAttr "L_IK_armCTRL.rotateOrder" 2;
+setAttr "L_IK_armCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_IK_armCTRL;
+select L_IK_armCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_IK_wrist L_IK_armCTRL;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_IK_armCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_IK_armCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_IK_armCTRL_BUFFER";
+
+select L_IK_armCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_IK_armCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_IK_armCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_IK_armCTRL L_IK_armCTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_IK_armCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_IK_armCTRL L_IK_armCTRL_BUFFER;
+
+//Making L_gimbalCTRL
+
+select L_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.189202 0.5 -0.5 -p -0.189202 0.5 -0.5 -p -0.189202 0.5 0.5 -p 0.189202 0.5 0.5 -p 0.189202 0.5 -0.5 -p 0.189202 -0.5 -0.5 -p 0.189202 -0.5 0.5 -p 0.189202 0.5 0.5 -p -0.189202 0.5 0.5 -p -0.189202 -0.5 0.5 -p 0.189202 -0.5 0.5 -p 0.189202 -0.5 -0.5 -p -0.189202 -0.5 -0.5 -p -0.189202 -0.5 0.5 -p -0.189202 0.5 0.5 -p -0.189202 0.5 -0.5 -p -0.189202 -0.5 -0.5 -p 0.189202 -0.5 -0.5 -p 0.189202 0.5 -0.5 -p -0.189202 0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_gimbalCTRL";
+setAttr "L_gimbalCTRL.rotateOrder" 2;
+setAttr "L_gimbalCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_gimbalCTRL;
+select L_gimbalCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_IK_wrist L_gimbalCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_gimbalCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_IK_armCTRL
+
+select R_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_IK_armCTRL";
+setAttr "R_IK_armCTRL.rotateOrder" 2;
+setAttr "R_IK_armCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_IK_armCTRL;
+select R_IK_armCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select R_IK_wrist R_IK_armCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_IK_armCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_IK_armCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_IK_armCTRL_BUFFER";
+
+select R_IK_armCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_IK_armCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_IK_armCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select R_IK_armCTRL R_IK_armCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_IK_armCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_IK_armCTRL R_IK_armCTRL_BUFFER;
+
+//Making R_gimbalCTRL
+
+select R_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.189202 0.5 -0.5 -p -0.189202 0.5 -0.5 -p -0.189202 0.5 0.5 -p 0.189202 0.5 0.5 -p 0.189202 0.5 -0.5 -p 0.189202 -0.5 -0.5 -p 0.189202 -0.5 0.5 -p 0.189202 0.5 0.5 -p -0.189202 0.5 0.5 -p -0.189202 -0.5 0.5 -p 0.189202 -0.5 0.5 -p 0.189202 -0.5 -0.5 -p -0.189202 -0.5 -0.5 -p -0.189202 -0.5 0.5 -p -0.189202 0.5 0.5 -p -0.189202 0.5 -0.5 -p -0.189202 -0.5 -0.5 -p 0.189202 -0.5 -0.5 -p 0.189202 0.5 -0.5 -p -0.189202 0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_gimbalCTRL";
+setAttr "R_gimbalCTRL.rotateOrder" 2;
+setAttr "R_gimbalCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_gimbalCTRL;
+select R_gimbalCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select R_IK_wrist R_gimbalCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_gimbalCTRL_orientConstraint1 ;
+doDelete;
+
+//--------------------------------------------------
+
+//Making L_armPV
+
+select L_IK_elbow;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_armPV";
+setAttr "L_armPVShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_armPV;
+select L_armPV;
+move -r -os -wd 0 0 -4;
+select L_armPV;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making L_armPV_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_armPV_BUFFER";
+
+select L_armPV;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_armPV_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_armPV_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent L_armPV L_armPV_BUFFER;
+
+//Making R_armPV
+
+select R_IK_elbow;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_armPV";
+setAttr "R_armPVShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_armPV;
+select R_armPV;
+move -r -os -wd 0 0 -4;
+select R_armPV;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making R_armPV_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_armPV_BUFFER";
+
+select R_armPV;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_armPV_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_armPV_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent R_armPV R_armPV_BUFFER;
+
+//--------------------------------------------------
+
+//making Clavicle controls
+
+//left
+
+select L_clavicle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p -0.000835419 1.279703 0.204855 -p -0.464756 0.816095 0.0919734 -p -0.456375 0.472728 0 -p -0.805962 0.472728 0.0919734 -p -1.269569 0.00880718 0.204855 -p -0.805962 -0.455114 0.0919734 -p -0.456375 -0.455114 0 -p -0.464756 -0.816095 0.0919734 -p -0.000835419 -1.279703 0.204855 -p 0.463085 -0.816095 0.0919734 -p 0.463085 -0.46651 0 -p 0.805965 -0.455114 0.0919734 -p 1.269573 0.00880718 0.204855 -p 0.805965 0.472728 0.0919734 -p 0.456379 0.472728 0 -p 0.463085 0.816095 0.0919734 -p -0.000835419 1.279703 0.204855 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_clavicleCTRL";
+setAttr "L_clavicleCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_clavicleCTRL;
+select L_clavicleCTRL;
+move -r -os -wd 0 0 -3;
+select L_clavicleCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making L_clavicleCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_clavicleCTRL_BUFFER";
+
+select L_clavicle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_clavicleCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_clavicleCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent L_clavicleCTRL L_clavicleCTRL_BUFFER;
+
+//right
+
+select R_clavicle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p -0.000835419 1.279703 0.204855 -p -0.464756 0.816095 0.0919734 -p -0.456375 0.472728 0 -p -0.805962 0.472728 0.0919734 -p -1.269569 0.00880718 0.204855 -p -0.805962 -0.455114 0.0919734 -p -0.456375 -0.455114 0 -p -0.464756 -0.816095 0.0919734 -p -0.000835419 -1.279703 0.204855 -p 0.463085 -0.816095 0.0919734 -p 0.463085 -0.46651 0 -p 0.805965 -0.455114 0.0919734 -p 1.269573 0.00880718 0.204855 -p 0.805965 0.472728 0.0919734 -p 0.456379 0.472728 0 -p 0.463085 0.816095 0.0919734 -p -0.000835419 1.279703 0.204855 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_clavicleCTRL";
+setAttr "R_clavicleCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_clavicleCTRL;
+select R_clavicleCTRL;
+move -r -os -wd 0 0 -3;
+select R_clavicleCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making R_clavicleCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_clavicleCTRL_BUFFER";
+
+select R_clavicle;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_clavicleCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_clavicleCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+parent R_clavicleCTRL R_clavicleCTRL_BUFFER;
+
+
+//--------------------------------------------------
+
+//Making Controls for the FK leg rig
+
+//Left Leg
+
+
+//Making L_hipCTRL
+
+select L_FK_hip;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_hipCTRL";
+setAttr "L_hipCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_hipCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_hip L_hipCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_hipCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_hipCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_hipCTRL_BUFFER";
+
+select L_hipCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_hipCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_hipCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_hip L_hipCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_hipCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_hipCTRL L_hipCTRL_BUFFER;
+setAttr "L_hipCTRL.rotateOrder" 3;
+
+//Making L_kneeCTRL
+
+select L_FK_knee;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_kneeCTRL";
+setAttr "L_kneeCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_kneeCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_knee L_kneeCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_kneeCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_kneeCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_kneeCTRL_BUFFER";
+
+select L_kneeCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_kneeCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_kneeCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_knee L_kneeCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_kneeCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_kneeCTRL L_kneeCTRL_BUFFER;
+setAttr "L_kneeCTRL.rotateOrder" 3;
+
+//Making L_ankleCTRL
+
+select L_FK_ankle;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_ankleCTRL";
+setAttr "L_ankleCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_ankleCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_ankle L_ankleCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ankleCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_ankleCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_ankleCTRL_BUFFER";
+
+select L_ankleCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_ankleCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_ankleCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_ankle L_ankleCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ankleCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_ankleCTRL L_ankleCTRL_BUFFER;
+setAttr "L_ankleCTRL.rotateOrder" 3;
+
+//Making L_ballCTRL
+
+select L_FK_ball;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "L_ballCTRL";
+setAttr "L_ballCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_ballCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_ball L_ballCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ballCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_ballCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_ballCTRL_BUFFER";
+
+select L_ballCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_ballCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_ballCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_ball L_ballCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ballCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_ballCTRL L_ballCTRL_BUFFER;
+setAttr "L_ballCTRL.rotateOrder" 3;
+
+//--------------------------------------------------
+
+//Right Leg
+
+//Making R_hipCTRL
+
+select R_FK_hip;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_hipCTRL";
+setAttr "R_hipCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_hipCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_hip R_hipCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_hipCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_hipCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_hipCTRL_BUFFER";
+
+select R_hipCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_hipCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_hipCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_hip R_hipCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_hipCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_hipCTRL R_hipCTRL_BUFFER;
+setAttr "R_hipCTRL.rotateOrder" 3;
+
+//Making R_kneeCTRL
+
+select R_FK_knee;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_kneeCTRL";
+setAttr "R_kneeCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_kneeCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_knee R_kneeCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_kneeCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_kneeCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_kneeCTRL_BUFFER";
+
+select R_kneeCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_kneeCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_kneeCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_knee R_kneeCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_kneeCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_kneeCTRL R_kneeCTRL_BUFFER;
+setAttr "R_kneeCTRL.rotateOrder" 3;
+
+//Making R_ankleCTRL
+
+select R_FK_ankle;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_ankleCTRL";
+setAttr "R_ankleCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_ankleCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_ankle R_ankleCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ankleCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_ankleCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_ankleCTRL_BUFFER";
+
+select R_ankleCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_ankleCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_ankleCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_ankle R_ankleCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ankleCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_ankleCTRL R_ankleCTRL_BUFFER;
+setAttr "R_ankleCTRL.rotateOrder" 3;
+
+//Making R_ballCTRL
+
+select R_FK_ball;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "R_ballCTRL";
+setAttr "R_ballCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_ballCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_ball R_ballCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ballCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_ballCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_ballCTRL_BUFFER";
+
+select R_ballCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_ballCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_ballCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_ball R_ballCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ballCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_ballCTRL R_ballCTRL_BUFFER;
+setAttr "R_ballCTRL.rotateOrder" 3;
+
+//--------------------------------------------------
+
+//Making Controls for the FK arm rig
+
+//Left Arm
+
+//Making L_shoulderCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "L_shoulderCTRL";
+
+select L_FK_shoulder;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_shoulderCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "L_shoulderCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_shoulderCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_shoulder L_shoulderCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_shoulderCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_shoulderCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_shoulderCTRL_BUFFER";
+
+select L_shoulderCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_shoulderCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_shoulderCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_shoulder L_shoulderCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_shoulderCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_shoulderCTRL L_shoulderCTRL_BUFFER;
+
+//Making L_elbowCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "L_elbowCTRL";
+
+select L_FK_elbow;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_elbowCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "L_elbowCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_elbowCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_elbow L_elbowCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_elbowCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_elbowCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_elbowCTRL_BUFFER";
+
+select L_elbowCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_elbowCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_elbowCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_elbow L_elbowCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_elbowCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_elbowCTRL L_elbowCTRL_BUFFER;
+
+
+//Making L_wristCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "L_wristCTRL";
+
+select L_FK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_wristCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "L_wristCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_wristCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_FK_wrist L_wristCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_wristCTRL_orientConstraint1 ;
+doDelete;
+
+//Making L_wristCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "L_wristCTRL_BUFFER";
+
+select L_wristCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_wristCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select L_wristCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select L_FK_wrist L_wristCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_wristCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_wristCTRL L_wristCTRL_BUFFER;
+
+//Right Arm
+
+//Making R_shoulderCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "R_shoulderCTRL";
+
+select R_FK_shoulder;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_shoulderCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "R_shoulderCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_shoulderCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_shoulder R_shoulderCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_shoulderCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_shoulderCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_shoulderCTRL_BUFFER";
+
+select R_shoulderCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_shoulderCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_shoulderCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_shoulder R_shoulderCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_shoulderCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_shoulderCTRL R_shoulderCTRL_BUFFER;
+
+//Making R_elbowCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "R_elbowCTRL";
+
+select R_FK_elbow;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_elbowCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "R_elbowCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_elbowCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_elbow R_elbowCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_elbowCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_elbowCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_elbowCTRL_BUFFER";
+
+select R_elbowCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_elbowCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_elbowCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_elbow R_elbowCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_elbowCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_elbowCTRL R_elbowCTRL_BUFFER;
+
+
+//Making R_wristCTRL
+
+circle -c 0 0 0 -nr 0 0 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+circle -c 0 0 0 -nr -10000000 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1;
+select -r nurbsCircleShape3 nurbsCircleShape2 nurbsCircle1 ;
+parent -r -s;
+select -r nurbsCircle2 nurbsCircle3 ;
+doDelete;
+rename "nurbsCircle1" "R_wristCTRL";
+
+select R_FK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_wristCTRL;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+setAttr "R_wristCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_wristCTRL;
+rotate -r -os -fo 0 0 90;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_FK_wrist R_wristCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_wristCTRL_orientConstraint1 ;
+doDelete;
+
+//Making R_wristCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "R_wristCTRL_BUFFER";
+
+select R_wristCTRL;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_wristCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select R_wristCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+select R_FK_wrist R_wristCTRL_BUFFER;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_wristCTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_wristCTRL R_wristCTRL_BUFFER;
+
+//--------------------------------------------------
+
+//Make hipCTRL
+
+select pelvisBIND;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+scale -r 1.485566 1 1.485566 ;
+select -addFirst makeNurbCircle1 ;
+setAttr "makeNurbCircle1.sections" 20;
+select -r nurbsCircle1.cv[1] ;
+select -tgl nurbsCircle1.cv[19] ;
+select -tgl nurbsCircle1.cv[17] ;
+select -tgl nurbsCircle1.cv[15] ;
+select -tgl nurbsCircle1.cv[13] ;
+select -tgl nurbsCircle1.cv[11] ;
+select -tgl nurbsCircle1.cv[9] ;
+select -tgl nurbsCircle1.cv[7] ;
+select -tgl nurbsCircle1.cv[5] ;
+select -tgl nurbsCircle1.cv[3] ;
+scale -r -p 0cm 0cm 0cm 0.684162 1 0.684162 ;
+select nurbsCircle1;
+xform -cpc;
+rename "hipCTRL";
+setAttr "hipCTRLShape.overrideEnabled" 1;
+color -rgb 0 1 0 hipCTRLShape;
+select hipCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//making hipCTRL_BUFFER
+
+select -cl;
+doGroup 0 1 1;
+rename "hipCTRL_BUFFER";
+
+select pelvisBIND;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select hipCTRL_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+select hipCTRL_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+parent hipCTRL hipCTRL_BUFFER;
+
+//--------------------------------------------------
+
+//Make character CTRL
+
+curve -d 1 -p 0.5 0.5 -0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -p 0.5 -0.5 0.5 -p 0.5 0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 -0.5 0.5 -p 0.5 -0.5 0.5 -p 0.5 -0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 -0.5 0.5 -p -0.5 0.5 0.5 -p -0.5 0.5 -0.5 -p -0.5 -0.5 -0.5 -p -0.5 0.5 -0.5 -p 0.5 0.5 -0.5 -p 0.5 -0.5 -0.5 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 ;
+scale -r 7.5 1 7.5 ;
+xform -cpc;
+rename "masterCTRL";
+setAttr "masterCTRLShape.overrideEnabled" 1;
+color -rgb 0 1 0 masterCTRLShape;
+select masterCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//--------------------------------------------------
+
+//Trying to make Left IK/FK switcher
+
+select L_ankleBIND;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0 0.978342 0.119648 -p 0 0.978342 -0.248035 -p 0 0.130886 0.59942 -p 0 0.130886 -1.097991 -p 0 -0.130886 -1.097991 -p 0 -0.130886 0.59942 -p 0 -0.978342 -0.248035 -p 0 -0.978342 0.119648 -p 0 5.96046e-08 1.09799 -p 0 0.978342 0.119648 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "L_IK_FK_Switch";
+move -r -os -wd 0 0 -3;
+setAttr "L_IK_FK_SwitchShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_IK_FK_Switch;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+
+//Trying to make Right IK/FK switcher
+
+select R_ankleBIND;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0 0.978342 0.119648 -p 0 0.978342 -0.248035 -p 0 0.130886 0.59942 -p 0 0.130886 -1.097991 -p 0 -0.130886 -1.097991 -p 0 -0.130886 0.59942 -p 0 -0.978342 -0.248035 -p 0 -0.978342 0.119648 -p 0 5.96046e-08 1.09799 -p 0 0.978342 0.119648 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "R_IK_FK_Switch";
+move -r -os -wd 0 0 -3;
+setAttr "R_IK_FK_SwitchShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_IK_FK_Switch;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//--------------------------------------------------
+
+//Trying to make Left Arm IK/FK switcher
+
+select L_wristBIND;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0 0.978342 0.119648 -p 0 0.978342 -0.248035 -p 0 0.130886 0.59942 -p 0 0.130886 -1.097991 -p 0 -0.130886 -1.097991 -p 0 -0.130886 0.59942 -p 0 -0.978342 -0.248035 -p 0 -0.978342 0.119648 -p 0 5.96046e-08 1.09799 -p 0 0.978342 0.119648 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "L_IK_FK_ArmSwitch";
+move -r -os -wd 0 0 -3;
+setAttr "L_IK_FK_ArmSwitchShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_IK_FK_ArmSwitch;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+
+//Trying to make Right IK/FK switcher
+
+select R_wristBIND;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0 0.978342 0.119648 -p 0 0.978342 -0.248035 -p 0 0.130886 0.59942 -p 0 0.130886 -1.097991 -p 0 -0.130886 -1.097991 -p 0 -0.130886 0.59942 -p 0 -0.978342 -0.248035 -p 0 -0.978342 0.119648 -p 0 5.96046e-08 1.09799 -p 0 0.978342 0.119648 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "R_IK_FK_ArmSwitch";
+move -r -os -wd 0 0 -3;
+setAttr "R_IK_FK_ArmSwitchShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_IK_FK_ArmSwitch;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//--------------------------------------------------
+
+//trying to make Left hand CTRL
+
+select L_handRoot;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p -0.254143 0 -1.33644 -p -0.254143 0 -1.085474 -p -0.413639 0 -0.963065 -p -0.594168 0 -0.802932 -p -0.594168 0 -0.802932 -p -0.918419 0 -0.371218 -p -0.918419 0 -0.371218 -p -1.297004 0 -0.0114748 -p -1.19204 0 0.0701118 -p -1.067844 0 0.131648 -p -0.962233 0 0.135586 -p -0.821198 0 0.079269 -p -0.737664 0 0.004173 -p -0.662003 0 -0.100972 -p -0.507683 0 -0.167657 -p -0.47775 0 0.016596 -p -0.47775 0 0.016596 -p -0.715132 0 0.966543 -p -0.722116 0 1.057979 -p -0.711819 0 1.129744 -p -0.680927 0 1.180504 -p -0.629879 0 1.210697 -p -0.629879 0 1.210697 -p -0.559114 0 1.220761 -p -0.525155 0 1.21627 -p -0.492511 0 1.202796 -p -0.431166 0 1.1489 -p -0.431166 0 1.1489 -p -0.375079 0 1.059074 -p -0.324251 0 0.933317 -p -0.10341 0 0.28131 -p -0.124442 0 1.119104 -p -0.121375 0 1.191404 -p -0.112173 0 1.254063 -p -0.0968371 0 1.307082 -p -0.0753664 0 1.350462 -p -0.0478707 0 1.384201 -p 0.0248666 0 1.422761 -p 0.0701084 0 1.427581 -p 0.116117 0 1.423308 -p 0.155991 0 1.410492 -p 0.189731 0 1.389131 -p 0.217336 0 1.359225 -p 0.254143 0 1.273781 -p 0.266412 0 1.154158 -p 0.266412 0 1.154158 -p 0.266412 0 0.316364 -p 0.476737 0 1.050749 -p 0.51431 0 1.1489 -p 0.562181 0 1.219009 -p 0.620349 0 1.261074 -p 0.688814 0 1.275095 -p 0.763962 0 1.263045 -p 0.817638 0 1.226896 -p 0.849844 0 1.166208 -p 0.86058 0 1.080545 -p 0.851796 0 1.009122 -p 0.637383 0 0.181405 -p 0.991637 0 0.751474 -p 1.040431 0 0.801864 -p 1.089009 0 0.832098 -p 1.137371 0 0.842176 -p 1.198986 0 0.830147 -p 1.250516 0 0.794059 -p 1.285382 0 0.740471 -p 1.297004 0 0.675943 -p 1.292294 0 0.633282 -p 1.278162 0 0.584063 -p 1.221638 0 0.465947 -p 0.88687 0 -0.115021 -p 0.90615 0 -0.325593 -p 0.874716 0 -0.51315 -p 0.833351 0 -0.682721 -p 0.833351 0 -0.682721 -p 0.782055 0 -0.834306 -p 0.720829 0 -0.967906 -p 0.720829 0 -0.967906 -p 0.567877 0 -1.143396 -p 0.567877 0 -1.33644 -p 0.470602 0 -1.376314 -p 0.371574 0 -1.404796 -p 0.270794 0 -1.421884 -p 0.16826 0 -1.427581 -p 0.16826 0 -1.427581 -p 0.0669316 0 -1.421884 -p 0.0669316 0 -1.421884 -p -0.0372449 0 -1.404796 -p -0.14427 0 -1.376314 -p -0.254143 0 -1.33644 -p -0.254143 0 -1.33644 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 -k 29 -k 30 -k 31 -k 32 -k 33 -k 34 -k 35 -k 36 -k 37 -k 38 -k 39 -k 40 -k 41 -k 42 -k 43 -k 44 -k 45 -k 46 -k 47 -k 48 -k 49 -k 50 -k 51 -k 52 -k 53 -k 54 -k 55 -k 56 -k 57 -k 58 -k 59 -k 60 -k 61 -k 62 -k 63 -k 64 -k 65 -k 66 -k 67 -k 68 -k 69 -k 70 -k 71 -k 72 -k 73 -k 74 -k 75 -k 76 -k 77 -k 78 -k 79 -k 80 -k 81 -k 82 -k 83 -k 84 -k 85 -k 86 -k 87 -k 88 -k 89 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "L_handCTRL";
+
+setAttr "L_handCTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_handCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select L_handRoot L_handCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_handCTRL;
+rotate -r -os -fo 0 90 -30 ;
+move -r -os -wd 0 -2 0 ;
+select -r L_handCTRL_orientConstraint1 ;
+doDelete;
+select L_handCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//trying to make Right hand CTRL
+
+select R_handRoot;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p -0.254143 0 -1.33644 -p -0.254143 0 -1.085474 -p -0.413639 0 -0.963065 -p -0.594168 0 -0.802932 -p -0.594168 0 -0.802932 -p -0.918419 0 -0.371218 -p -0.918419 0 -0.371218 -p -1.297004 0 -0.0114748 -p -1.19204 0 0.0701118 -p -1.067844 0 0.131648 -p -0.962233 0 0.135586 -p -0.821198 0 0.079269 -p -0.737664 0 0.004173 -p -0.662003 0 -0.100972 -p -0.507683 0 -0.167657 -p -0.47775 0 0.016596 -p -0.47775 0 0.016596 -p -0.715132 0 0.966543 -p -0.722116 0 1.057979 -p -0.711819 0 1.129744 -p -0.680927 0 1.180504 -p -0.629879 0 1.210697 -p -0.629879 0 1.210697 -p -0.559114 0 1.220761 -p -0.525155 0 1.21627 -p -0.492511 0 1.202796 -p -0.431166 0 1.1489 -p -0.431166 0 1.1489 -p -0.375079 0 1.059074 -p -0.324251 0 0.933317 -p -0.10341 0 0.28131 -p -0.124442 0 1.119104 -p -0.121375 0 1.191404 -p -0.112173 0 1.254063 -p -0.0968371 0 1.307082 -p -0.0753664 0 1.350462 -p -0.0478707 0 1.384201 -p 0.0248666 0 1.422761 -p 0.0701084 0 1.427581 -p 0.116117 0 1.423308 -p 0.155991 0 1.410492 -p 0.189731 0 1.389131 -p 0.217336 0 1.359225 -p 0.254143 0 1.273781 -p 0.266412 0 1.154158 -p 0.266412 0 1.154158 -p 0.266412 0 0.316364 -p 0.476737 0 1.050749 -p 0.51431 0 1.1489 -p 0.562181 0 1.219009 -p 0.620349 0 1.261074 -p 0.688814 0 1.275095 -p 0.763962 0 1.263045 -p 0.817638 0 1.226896 -p 0.849844 0 1.166208 -p 0.86058 0 1.080545 -p 0.851796 0 1.009122 -p 0.637383 0 0.181405 -p 0.991637 0 0.751474 -p 1.040431 0 0.801864 -p 1.089009 0 0.832098 -p 1.137371 0 0.842176 -p 1.198986 0 0.830147 -p 1.250516 0 0.794059 -p 1.285382 0 0.740471 -p 1.297004 0 0.675943 -p 1.292294 0 0.633282 -p 1.278162 0 0.584063 -p 1.221638 0 0.465947 -p 0.88687 0 -0.115021 -p 0.90615 0 -0.325593 -p 0.874716 0 -0.51315 -p 0.833351 0 -0.682721 -p 0.833351 0 -0.682721 -p 0.782055 0 -0.834306 -p 0.720829 0 -0.967906 -p 0.720829 0 -0.967906 -p 0.567877 0 -1.143396 -p 0.567877 0 -1.33644 -p 0.470602 0 -1.376314 -p 0.371574 0 -1.404796 -p 0.270794 0 -1.421884 -p 0.16826 0 -1.427581 -p 0.16826 0 -1.427581 -p 0.0669316 0 -1.421884 -p 0.0669316 0 -1.421884 -p -0.0372449 0 -1.404796 -p -0.14427 0 -1.376314 -p -0.254143 0 -1.33644 -p -0.254143 0 -1.33644 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 -k 21 -k 22 -k 23 -k 24 -k 25 -k 26 -k 27 -k 28 -k 29 -k 30 -k 31 -k 32 -k 33 -k 34 -k 35 -k 36 -k 37 -k 38 -k 39 -k 40 -k 41 -k 42 -k 43 -k 44 -k 45 -k 46 -k 47 -k 48 -k 49 -k 50 -k 51 -k 52 -k 53 -k 54 -k 55 -k 56 -k 57 -k 58 -k 59 -k 60 -k 61 -k 62 -k 63 -k 64 -k 65 -k 66 -k 67 -k 68 -k 69 -k 70 -k 71 -k 72 -k 73 -k 74 -k 75 -k 76 -k 77 -k 78 -k 79 -k 80 -k 81 -k 82 -k 83 -k 84 -k 85 -k 86 -k 87 -k 88 -k 89 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2];
+}
+rename "curve1" "R_handCTRL";
+
+setAttr "R_handCTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_handCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+select R_handRoot R_handCTRL;
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_handCTRL;
+rotate -r -os -fo 0 -90 30 ;
+move -r -os -wd 0 -2 0 ;
+select -r R_handCTRL_orientConstraint1 ;
+doDelete;
+select -r R_handCTRL;
+rotate -r -os -fo 180 180 0 ;
+select R_handCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+delete -all -constructionHistory;
+
+//--------------------------------------------------
+
+
+//Making shoulderSpineCTRL
+
+select spineEnd;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "shoulderSpineCTRL";
+setAttr "shoulderSpineCTRLShape.overrideEnabled" 1;
+color -rgb 0 1 0 shoulderSpineCTRL;
+select shoulderSpineCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//Making torsoCTRL
+
+select spine1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1; objectMoveCommand;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+xform -cpc;
+rename "torsoCTRL";
+setAttr "torsoCTRLShape.overrideEnabled" 1;
+color -rgb 0 1 0 torsoCTRLShape;
+select torsoCTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+
+//fixing controls
+
+//select pelvis
+//delete parent constraint that connects it to hipCTRL
+//parent hipSpineJNT under hipCTRL
+//parent shoulderSpineJNT under shoulderSpineCTRL
+//
+
+//--------------------------------------------------
+
+//finger controls
+
+//left hand
+
+//index
+
+//left index1 
+
+select L_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_index1CTRL";
+select L_index1CTRL;
+setAttr "L_index1CTRL.rotateOrder" 3;
+select L_index1CTRL;
+setAttr "L_index1CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_index1CTRL;
+select L_index1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index1 ;
+select -tgl L_index1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index1CTRL_orientConstraint1 ;
+doDelete;
+
+//left index1 bufferCTRL
+
+select L_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index1CTRL_BUFFER";
+select L_index1CTRL_BUFFER;
+setAttr "L_index1CTRL_BUFFER.rotateOrder" 0;
+		select L_index1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index1 ;
+select -tgl L_index1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left index1 bufferCTRL_SDK
+
+select L_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index1CTRL_SDK_BUFFER";
+select L_index1CTRL_SDK_BUFFER;
+setAttr "L_index1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_index1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index1 ;
+select -tgl L_index1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left index2 
+
+select L_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_index2CTRL";
+select L_index2CTRL;
+setAttr "L_index2CTRL.rotateOrder" 3;
+select L_index2CTRL;
+setAttr "L_index2CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_index2CTRL;
+select L_index2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index2 ;
+select -tgl L_index2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index2CTRL_orientConstraint1 ;
+doDelete;
+
+//left index2 bufferCTRL
+
+select L_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index2CTRL_BUFFER";
+select L_index2CTRL_BUFFER;
+setAttr "L_index2CTRL_BUFFER.rotateOrder" 0;
+		select L_index2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index2 ;
+select -tgl L_index2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left index2 bufferCTRL_SDK
+
+select L_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index2CTRL_SDK_BUFFER";
+select L_index2CTRL_SDK_BUFFER;
+setAttr "L_index2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_index2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index2 ;
+select -tgl L_index2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left index3 
+
+select L_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_index3CTRL";
+select L_index3CTRL;
+setAttr "L_index3CTRL.rotateOrder" 3;
+select L_index3CTRL;
+setAttr "L_index3CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_index3CTRL;
+select L_index3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index3 ;
+select -tgl L_index3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index3CTRL_orientConstraint1 ;
+doDelete;
+
+//left index1 bufferCTRL
+
+select L_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index3CTRL_BUFFER";
+select L_index3CTRL_BUFFER;
+setAttr "L_index3CTRL_BUFFER.rotateOrder" 0;
+		select L_index3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index3 ;
+select -tgl L_index3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left index1 bufferCTRL_SDK
+
+select L_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_index3CTRL_SDK_BUFFER";
+select L_index3CTRL_SDK_BUFFER;
+setAttr "L_index3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_index3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_index3 ;
+select -tgl L_index3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_index3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+
+//parenting the finger joint ctrls to the buffer
+
+parent L_index3CTRL L_index3CTRL_SDK_BUFFER ;
+parent L_index3CTRL_SDK_BUFFER L_index3CTRL_BUFFER ;
+
+parent L_index2CTRL L_index2CTRL_SDK_BUFFER ;
+parent L_index2CTRL_SDK_BUFFER L_index2CTRL_BUFFER ;
+
+parent L_index1CTRL L_index1CTRL_SDK_BUFFER ;
+parent L_index1CTRL_SDK_BUFFER L_index1CTRL_BUFFER ;
+
+//middle
+
+//left middle1 
+
+select L_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_middle1CTRL";
+select L_middle1CTRL;
+setAttr "L_middle1CTRL.rotateOrder" 3;
+select L_middle1CTRL;
+setAttr "L_middle1CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_middle1CTRL;
+select L_middle1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle1 ;
+select -tgl L_middle1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle1CTRL_orientConstraint1 ;
+doDelete;
+
+//left middle1 bufferCTRL
+
+select L_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle1CTRL_BUFFER";
+select L_middle1CTRL_BUFFER;
+setAttr "L_middle1CTRL_BUFFER.rotateOrder" 0;
+		select L_middle1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle1 ;
+select -tgl L_middle1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left middle1 bufferCTRL_SDK
+
+select L_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle1CTRL_SDK_BUFFER";
+select L_middle1CTRL_SDK_BUFFER;
+setAttr "L_middle1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_middle1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle1 ;
+select -tgl L_middle1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left middle2 
+
+select L_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_middle2CTRL";
+select L_middle2CTRL;
+setAttr "L_middle2CTRL.rotateOrder" 3;
+select L_middle2CTRL;
+setAttr "L_middle2CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_middle2CTRL;
+select L_middle2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle2 ;
+select -tgl L_middle2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle2CTRL_orientConstraint1 ;
+doDelete;
+
+//left middle2 bufferCTRL
+
+select L_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle2CTRL_BUFFER";
+select L_middle2CTRL_BUFFER;
+setAttr "L_middle2CTRL_BUFFER.rotateOrder" 0;
+		select L_middle2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle2 ;
+select -tgl L_middle2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left middle2 bufferCTRL_SDK
+
+select L_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle2CTRL_SDK_BUFFER";
+select L_middle2CTRL_SDK_BUFFER;
+setAttr "L_middle2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_middle2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle2 ;
+select -tgl L_middle2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left middle3 
+
+select L_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_middle3CTRL";
+select L_middle3CTRL;
+setAttr "L_middle3CTRL.rotateOrder" 3;
+select L_middle3CTRL;
+setAttr "L_middle3CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_middle3CTRL;
+select L_middle3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle3 ;
+select -tgl L_middle3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle3CTRL_orientConstraint1 ;
+doDelete;
+
+//left middle3 bufferCTRL
+
+select L_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle3CTRL_BUFFER";
+select L_middle3CTRL_BUFFER;
+setAttr "L_middle3CTRL_BUFFER.rotateOrder" 0;
+		select L_middle3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle3 ;
+select -tgl L_middle3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left middle3 bufferCTRL_SDK
+
+select L_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_middle3CTRL_SDK_BUFFER";
+select L_middle3CTRL_SDK_BUFFER;
+setAttr "L_middle3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_middle3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_middle3 ;
+select -tgl L_middle3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_middle3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+
+//parenting the finger joint ctrls to the buffer
+
+parent L_middle3CTRL L_middle3CTRL_SDK_BUFFER ;
+parent L_middle3CTRL_SDK_BUFFER L_middle3CTRL_BUFFER ;
+
+parent L_middle2CTRL L_middle2CTRL_SDK_BUFFER ;
+parent L_middle2CTRL_SDK_BUFFER L_middle2CTRL_BUFFER ;
+
+parent L_middle1CTRL L_middle1CTRL_SDK_BUFFER ;
+parent L_middle1CTRL_SDK_BUFFER L_middle1CTRL_BUFFER ;
+
+//ring
+
+//left ring1 
+
+select L_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_ring1CTRL";
+select L_ring1CTRL;
+setAttr "L_ring1CTRL.rotateOrder" 3;
+select L_ring1CTRL;
+setAttr "L_ring1CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_ring1CTRL;
+select L_ring1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring1 ;
+select -tgl L_ring1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring1CTRL_orientConstraint1 ;
+doDelete;
+
+//left ring1 bufferCTRL
+
+select L_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring1CTRL_BUFFER";
+select L_ring1CTRL_BUFFER;
+setAttr "L_ring1CTRL_BUFFER.rotateOrder" 0;
+		select L_ring1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring1 ;
+select -tgl L_ring1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left ring1 bufferCTRL_SDK
+
+select L_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring1CTRL_SDK_BUFFER";
+select L_ring1CTRL_SDK_BUFFER;
+setAttr "L_ring1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_ring1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring1 ;
+select -tgl L_ring1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left ring2 
+
+select L_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_ring2CTRL";
+select L_ring2CTRL;
+setAttr "L_ring2CTRL.rotateOrder" 3;
+select L_ring2CTRL;
+setAttr "L_ring2CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_ring2CTRL;
+select L_ring2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring2 ;
+select -tgl L_ring2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring2CTRL_orientConstraint1 ;
+doDelete;
+
+//left ring2 bufferCTRL
+
+select L_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring2CTRL_BUFFER";
+select L_ring2CTRL_BUFFER;
+setAttr "L_ring2CTRL_BUFFER.rotateOrder" 0;
+		select L_ring2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring2 ;
+select -tgl L_ring2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left ring2 bufferCTRL_SDK
+
+select L_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring2CTRL_SDK_BUFFER";
+select L_ring2CTRL_SDK_BUFFER;
+setAttr "L_ring2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_ring2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring2 ;
+select -tgl L_ring2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left ring3 
+
+select L_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_ring3CTRL";
+select L_ring3CTRL;
+setAttr "L_ring3CTRL.rotateOrder" 3;
+select L_ring3CTRL;
+setAttr "L_ring3CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_ring3CTRL;
+select L_ring3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring3 ;
+select -tgl L_ring3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring3CTRL_orientConstraint1 ;
+doDelete;
+
+//left ring3 bufferCTRL
+
+select L_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring3CTRL_BUFFER";
+select L_ring3CTRL_BUFFER;
+setAttr "L_ring3CTRL_BUFFER.rotateOrder" 0;
+		select L_ring3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring3 ;
+select -tgl L_ring3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left ring3 bufferCTRL_SDK
+
+select L_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_ring3CTRL_SDK_BUFFER";
+select L_ring3CTRL_SDK_BUFFER;
+setAttr "L_ring3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_ring3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_ring3 ;
+select -tgl L_ring3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_ring3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent L_ring3CTRL L_ring3CTRL_SDK_BUFFER ;
+parent L_ring3CTRL_SDK_BUFFER L_ring3CTRL_BUFFER ;
+
+parent L_ring2CTRL L_ring2CTRL_SDK_BUFFER ;
+parent L_ring2CTRL_SDK_BUFFER L_ring2CTRL_BUFFER ;
+
+parent L_ring1CTRL L_ring1CTRL_SDK_BUFFER ;
+parent L_ring1CTRL_SDK_BUFFER L_ring1CTRL_BUFFER ;
+
+//pinky
+
+//left pinky1 
+
+select L_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_pinky1CTRL";
+select L_pinky1CTRL;
+setAttr "L_pinky1CTRL.rotateOrder" 3;
+select L_pinky1CTRL;
+setAttr "L_pinky1CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_pinky1CTRL;
+select L_pinky1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky1 ;
+select -tgl L_pinky1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky1CTRL_orientConstraint1 ;
+doDelete;
+
+//left pinky1 bufferCTRL
+
+select L_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky1CTRL_BUFFER";
+select L_pinky1CTRL_BUFFER;
+setAttr "L_pinky1CTRL_BUFFER.rotateOrder" 0;
+		select L_pinky1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky1 ;
+select -tgl L_pinky1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left pinky1 bufferCTRL_SDK
+
+select L_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky1CTRL_SDK_BUFFER";
+select L_pinky1CTRL_SDK_BUFFER;
+setAttr "L_pinky1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_pinky1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky1 ;
+select -tgl L_pinky1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left pinky2 
+
+select L_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_pinky2CTRL";
+select L_pinky2CTRL;
+setAttr "L_pinky2CTRL.rotateOrder" 3;
+select L_pinky2CTRL;
+setAttr "L_pinky2CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_pinky2CTRL;
+select L_pinky2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky2 ;
+select -tgl L_pinky2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky2CTRL_orientConstraint1 ;
+doDelete;
+
+//left pinky2 bufferCTRL
+
+select L_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky2CTRL_BUFFER";
+select L_pinky2CTRL_BUFFER;
+setAttr "L_pinky2CTRL_BUFFER.rotateOrder" 0;
+		select L_pinky2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky2 ;
+select -tgl L_pinky2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left pinky2 bufferCTRL_SDK
+
+select L_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky2CTRL_SDK_BUFFER";
+select L_pinky2CTRL_SDK_BUFFER;
+setAttr "L_pinky2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_pinky2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky2 ;
+select -tgl L_pinky2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left pinky3 
+
+select L_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_pinky3CTRL";
+select L_pinky3CTRL;
+setAttr "L_pinky3CTRL.rotateOrder" 3;
+select L_pinky3CTRL;
+setAttr "L_pinky3CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_pinky3CTRL;
+select L_pinky3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky3 ;
+select -tgl L_pinky3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky3CTRL_orientConstraint1 ;
+doDelete;
+
+//left pinky3 bufferCTRL
+
+select L_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky3CTRL_BUFFER";
+select L_pinky3CTRL_BUFFER;
+setAttr "L_pinky3CTRL_BUFFER.rotateOrder" 0;
+		select L_pinky3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky3 ;
+select -tgl L_pinky3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left pinky3 bufferCTRL_SDK
+
+select L_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_pinky3CTRL_SDK_BUFFER";
+select L_pinky3CTRL_SDK_BUFFER;
+setAttr "L_pinky3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_pinky3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_pinky3 ;
+select -tgl L_pinky3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_pinky3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent L_pinky3CTRL L_pinky3CTRL_SDK_BUFFER ;
+parent L_pinky3CTRL_SDK_BUFFER L_pinky3CTRL_BUFFER ;
+
+parent L_pinky2CTRL L_pinky2CTRL_SDK_BUFFER ;
+parent L_pinky2CTRL_SDK_BUFFER L_pinky2CTRL_BUFFER ;
+
+parent L_pinky1CTRL L_pinky1CTRL_SDK_BUFFER ;
+parent L_pinky1CTRL_SDK_BUFFER L_pinky1CTRL_BUFFER ;
+
+
+//thumb
+
+//left thumb1 
+
+select L_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_thumb1CTRL";
+select L_thumb1CTRL;
+setAttr "L_thumb1CTRL.rotateOrder" 3;
+select L_thumb1CTRL;
+setAttr "L_thumb1CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_thumb1CTRL;
+select L_thumb1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb1 ;
+select -tgl L_thumb1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb1CTRL_orientConstraint1 ;
+doDelete;
+
+//left thumb1 bufferCTRL
+
+select L_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb1CTRL_BUFFER";
+select L_thumb1CTRL_BUFFER;
+setAttr "L_thumb1CTRL_BUFFER.rotateOrder" 0;
+		select L_thumb1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb1 ;
+select -tgl L_thumb1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left thumb1 bufferCTRL_SDK
+
+select L_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb1CTRL_SDK_BUFFER";
+select L_thumb1CTRL_SDK_BUFFER;
+setAttr "L_thumb1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_thumb1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb1 ;
+select -tgl L_thumb1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left thumb2 
+
+select L_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_thumb2CTRL";
+select L_thumb2CTRL;
+setAttr "L_thumb2CTRL.rotateOrder" 3;
+select L_thumb2CTRL;
+setAttr "L_thumb2CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_thumb2CTRL;
+select L_thumb2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb2 ;
+select -tgl L_thumb2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb2CTRL_orientConstraint1 ;
+doDelete;
+
+//left thumb2 bufferCTRL
+
+select L_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb2CTRL_BUFFER";
+select L_thumb2CTRL_BUFFER;
+setAttr "L_thumb2CTRL_BUFFER.rotateOrder" 0;
+		select L_thumb2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb2 ;
+select -tgl L_thumb2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left thumb2 bufferCTRL_SDK
+
+select L_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb2CTRL_SDK_BUFFER";
+select L_thumb2CTRL_SDK_BUFFER;
+setAttr "L_thumb2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_thumb2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb2 ;
+select -tgl L_thumb2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left thumb3 
+
+select L_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "L_thumb3CTRL";
+select L_thumb3CTRL;
+setAttr "L_thumb3CTRL.rotateOrder" 3;
+select L_thumb3CTRL;
+setAttr "L_thumb3CTRLShape.overrideEnabled" 1;
+color -rgb 0 0 1 L_thumb3CTRL;
+select L_thumb3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb3 ;
+select -tgl L_thumb3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb3CTRL_orientConstraint1 ;
+doDelete;
+
+//left thumb3 bufferCTRL
+
+select L_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb3CTRL_BUFFER";
+select L_thumb3CTRL_BUFFER;
+setAttr "L_thumb3CTRL_BUFFER.rotateOrder" 0;
+		select L_thumb3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb3 ;
+select -tgl L_thumb3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//left thumb3 bufferCTRL_SDK
+
+select L_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "L_thumb3CTRL_SDK_BUFFER";
+select L_thumb3CTRL_SDK_BUFFER;
+setAttr "L_thumb3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select L_thumb3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r L_thumb3 ;
+select -tgl L_thumb3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_thumb3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent L_thumb3CTRL L_thumb3CTRL_SDK_BUFFER ;
+parent L_thumb3CTRL_SDK_BUFFER L_thumb3CTRL_BUFFER ;
+
+parent L_thumb2CTRL L_thumb2CTRL_SDK_BUFFER ;
+parent L_thumb2CTRL_SDK_BUFFER L_thumb2CTRL_BUFFER ;
+
+parent L_thumb1CTRL L_thumb1CTRL_SDK_BUFFER ;
+parent L_thumb1CTRL_SDK_BUFFER L_thumb1CTRL_BUFFER ;
+
+//right hand
+
+//index
+
+//right index1 
+
+select R_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_index1CTRL";
+select R_index1CTRL;
+setAttr "R_index1CTRL.rotateOrder" 3;
+select R_index1CTRL;
+setAttr "R_index1CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_index1CTRL;
+select R_index1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index1 ;
+select -tgl R_index1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index1CTRL_orientConstraint1 ;
+doDelete;
+
+//right index1 bufferCTRL
+
+select R_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index1CTRL_BUFFER";
+select R_index1CTRL_BUFFER;
+setAttr "R_index1CTRL_BUFFER.rotateOrder" 0;
+		select R_index1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index1 ;
+select -tgl R_index1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right  index1 bufferCTRL_SDK
+
+select R_index1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index1CTRL_SDK_BUFFER";
+select R_index1CTRL_SDK_BUFFER;
+setAttr "R_index1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_index1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index1 ;
+select -tgl R_index1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right index2 
+
+select R_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_index2CTRL";
+select R_index2CTRL;
+setAttr "R_index2CTRL.rotateOrder" 3;
+select R_index2CTRL;
+setAttr "R_index2CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_index2CTRL;
+select R_index2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index2 ;
+select -tgl R_index2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index2CTRL_orientConstraint1 ;
+doDelete;
+
+//right index2 bufferCTRL
+
+select R_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index2CTRL_BUFFER";
+select R_index2CTRL_BUFFER;
+setAttr "R_index2CTRL_BUFFER.rotateOrder" 0;
+		select R_index2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index2 ;
+select -tgl R_index2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right index2 bufferCTRL_SDK
+
+select R_index2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index2CTRL_SDK_BUFFER";
+select R_index2CTRL_SDK_BUFFER;
+setAttr "R_index2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_index2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index2 ;
+select -tgl R_index2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right index3 
+
+select R_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_index3CTRL";
+select R_index3CTRL;
+setAttr "R_index3CTRL.rotateOrder" 3;
+select R_index3CTRL;
+setAttr "R_index3CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_index3CTRL;
+select R_index3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index3 ;
+select -tgl R_index3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index3CTRL_orientConstraint1 ;
+doDelete;
+
+//right index1 bufferCTRL
+
+select R_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index3CTRL_BUFFER";
+select R_index3CTRL_BUFFER;
+setAttr "R_index3CTRL_BUFFER.rotateOrder" 0;
+		select R_index3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index3 ;
+select -tgl R_index3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right index1 bufferCTRL_SDK
+
+select R_index3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_index3CTRL_SDK_BUFFER";
+select R_index3CTRL_SDK_BUFFER;
+setAttr "R_index3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_index3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_index3 ;
+select -tgl R_index3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_index3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+
+//parenting the finger joint ctrls to the buffer
+
+parent R_index3CTRL R_index3CTRL_SDK_BUFFER ;
+parent R_index3CTRL_SDK_BUFFER R_index3CTRL_BUFFER ;
+
+parent R_index2CTRL R_index2CTRL_SDK_BUFFER ;
+parent R_index2CTRL_SDK_BUFFER R_index2CTRL_BUFFER ;
+
+parent R_index1CTRL R_index1CTRL_SDK_BUFFER ;
+parent R_index1CTRL_SDK_BUFFER R_index1CTRL_BUFFER ;
+
+//middle
+
+//right middle1 
+
+select R_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_middle1CTRL";
+select R_middle1CTRL;
+setAttr "R_middle1CTRL.rotateOrder" 3;
+select R_middle1CTRL;
+setAttr "R_middle1CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_middle1CTRL;
+select R_middle1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle1 ;
+select -tgl R_middle1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle1CTRL_orientConstraint1 ;
+doDelete;
+
+//right middle1 bufferCTRL
+
+select R_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle1CTRL_BUFFER";
+select R_middle1CTRL_BUFFER;
+setAttr "R_middle1CTRL_BUFFER.rotateOrder" 0;
+		select R_middle1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle1 ;
+select -tgl R_middle1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right middle1 bufferCTRL_SDK
+
+select R_middle1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle1CTRL_SDK_BUFFER";
+select R_middle1CTRL_SDK_BUFFER;
+setAttr "R_middle1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_middle1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle1 ;
+select -tgl R_middle1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right middle2 
+
+select R_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_middle2CTRL";
+select R_middle2CTRL;
+setAttr "R_middle2CTRL.rotateOrder" 3;
+select R_middle2CTRL;
+setAttr "R_middle2CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_middle2CTRL;
+select R_middle2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle2 ;
+select -tgl R_middle2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle2CTRL_orientConstraint1 ;
+doDelete;
+
+//right middle2 bufferCTRL
+
+select R_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle2CTRL_BUFFER";
+select R_middle2CTRL_BUFFER;
+setAttr "R_middle2CTRL_BUFFER.rotateOrder" 0;
+		select R_middle2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle2 ;
+select -tgl R_middle2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right middle2 bufferCTRL_SDK
+
+select R_middle2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle2CTRL_SDK_BUFFER";
+select R_middle2CTRL_SDK_BUFFER;
+setAttr "R_middle2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_middle2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle2 ;
+select -tgl R_middle2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right middle3 
+
+select R_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_middle3CTRL";
+select R_middle3CTRL;
+setAttr "R_middle3CTRL.rotateOrder" 3;
+select R_middle3CTRL;
+setAttr "R_middle3CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_middle3CTRL;
+select R_middle3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle3 ;
+select -tgl R_middle3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle3CTRL_orientConstraint1 ;
+doDelete;
+
+//right middle3 bufferCTRL
+
+select R_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle3CTRL_BUFFER";
+select R_middle3CTRL_BUFFER;
+setAttr "R_middle3CTRL_BUFFER.rotateOrder" 0;
+		select R_middle3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle3 ;
+select -tgl R_middle3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right middle3 bufferCTRL_SDK
+
+select R_middle3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_middle3CTRL_SDK_BUFFER";
+select R_middle3CTRL_SDK_BUFFER;
+setAttr "R_middle3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_middle3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_middle3 ;
+select -tgl R_middle3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_middle3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+
+//parenting the finger joint ctrls to the buffer
+
+parent R_middle3CTRL R_middle3CTRL_SDK_BUFFER ;
+parent R_middle3CTRL_SDK_BUFFER R_middle3CTRL_BUFFER ;
+
+parent R_middle2CTRL R_middle2CTRL_SDK_BUFFER ;
+parent R_middle2CTRL_SDK_BUFFER R_middle2CTRL_BUFFER ;
+
+parent R_middle1CTRL R_middle1CTRL_SDK_BUFFER ;
+parent R_middle1CTRL_SDK_BUFFER R_middle1CTRL_BUFFER ;
+
+//ring
+
+//right ring1 
+
+select R_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_ring1CTRL";
+select R_ring1CTRL;
+setAttr "R_ring1CTRL.rotateOrder" 3;
+select R_ring1CTRL;
+setAttr "R_ring1CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_ring1CTRL;
+select R_ring1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring1 ;
+select -tgl R_ring1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring1CTRL_orientConstraint1 ;
+doDelete;
+
+//right ring1 bufferCTRL
+
+select R_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring1CTRL_BUFFER";
+select R_ring1CTRL_BUFFER;
+setAttr "R_ring1CTRL_BUFFER.rotateOrder" 0;
+		select R_ring1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring1 ;
+select -tgl R_ring1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right ring1 bufferCTRL_SDK
+
+select R_ring1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring1CTRL_SDK_BUFFER";
+select R_ring1CTRL_SDK_BUFFER;
+setAttr "R_ring1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_ring1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring1 ;
+select -tgl R_ring1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right ring2 
+
+select R_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_ring2CTRL";
+select R_ring2CTRL;
+setAttr "R_ring2CTRL.rotateOrder" 3;
+select R_ring2CTRL;
+setAttr "R_ring2CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_ring2CTRL;
+select R_ring2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring2 ;
+select -tgl R_ring2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring2CTRL_orientConstraint1 ;
+doDelete;
+
+//right ring2 bufferCTRL
+
+select R_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring2CTRL_BUFFER";
+select R_ring2CTRL_BUFFER;
+setAttr "R_ring2CTRL_BUFFER.rotateOrder" 0;
+		select R_ring2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring2 ;
+select -tgl R_ring2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right ring2 bufferCTRL_SDK
+
+select R_ring2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring2CTRL_SDK_BUFFER";
+select R_ring2CTRL_SDK_BUFFER;
+setAttr "R_ring2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_ring2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring2 ;
+select -tgl R_ring2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right ring3 
+
+select R_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_ring3CTRL";
+select R_ring3CTRL;
+setAttr "R_ring3CTRL.rotateOrder" 3;
+select R_ring3CTRL;
+setAttr "R_ring3CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_ring3CTRL;
+select R_ring3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring3 ;
+select -tgl R_ring3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring3CTRL_orientConstraint1 ;
+doDelete;
+
+//right ring3 bufferCTRL
+
+select R_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring3CTRL_BUFFER";
+select R_ring3CTRL_BUFFER;
+setAttr "R_ring3CTRL_BUFFER.rotateOrder" 0;
+		select R_ring3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring3 ;
+select -tgl R_ring3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right ring3 bufferCTRL_SDK
+
+select R_ring3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_ring3CTRL_SDK_BUFFER";
+select R_ring3CTRL_SDK_BUFFER;
+setAttr "R_ring3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_ring3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_ring3 ;
+select -tgl R_ring3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_ring3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent R_ring3CTRL R_ring3CTRL_SDK_BUFFER ;
+parent R_ring3CTRL_SDK_BUFFER R_ring3CTRL_BUFFER ;
+
+parent R_ring2CTRL R_ring2CTRL_SDK_BUFFER ;
+parent R_ring2CTRL_SDK_BUFFER R_ring2CTRL_BUFFER ;
+
+parent R_ring1CTRL R_ring1CTRL_SDK_BUFFER ;
+parent R_ring1CTRL_SDK_BUFFER R_ring1CTRL_BUFFER ;
+
+//pinky
+
+//right pinky1 
+
+select R_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_pinky1CTRL";
+select R_pinky1CTRL;
+setAttr "R_pinky1CTRL.rotateOrder" 3;
+select R_pinky1CTRL;
+setAttr "R_pinky1CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_pinky1CTRL;
+select R_pinky1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky1 ;
+select -tgl R_pinky1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky1CTRL_orientConstraint1 ;
+doDelete;
+
+//right pinky1 bufferCTRL
+
+select R_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky1CTRL_BUFFER";
+select R_pinky1CTRL_BUFFER;
+setAttr "R_pinky1CTRL_BUFFER.rotateOrder" 0;
+		select R_pinky1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky1 ;
+select -tgl R_pinky1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right pinky1 bufferCTRL_SDK
+
+select R_pinky1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky1CTRL_SDK_BUFFER";
+select R_pinky1CTRL_SDK_BUFFER;
+setAttr "R_pinky1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_pinky1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky1 ;
+select -tgl R_pinky1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right pinky2 
+
+select R_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_pinky2CTRL";
+select R_pinky2CTRL;
+setAttr "R_pinky2CTRL.rotateOrder" 3;
+select R_pinky2CTRL;
+setAttr "R_pinky2CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_pinky2CTRL;
+select R_pinky2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky2 ;
+select -tgl R_pinky2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky2CTRL_orientConstraint1 ;
+doDelete;
+
+//right pinky2 bufferCTRL
+
+select R_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky2CTRL_BUFFER";
+select R_pinky2CTRL_BUFFER;
+setAttr "R_pinky2CTRL_BUFFER.rotateOrder" 0;
+		select R_pinky2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky2 ;
+select -tgl R_pinky2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right pinky2 bufferCTRL_SDK
+
+select R_pinky2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky2CTRL_SDK_BUFFER";
+select R_pinky2CTRL_SDK_BUFFER;
+setAttr "R_pinky2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_pinky2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky2 ;
+select -tgl R_pinky2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right pinky3 
+
+select R_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_pinky3CTRL";
+select R_pinky3CTRL;
+setAttr "R_pinky3CTRL.rotateOrder" 3;
+select R_pinky3CTRL;
+setAttr "R_pinky3CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_pinky3CTRL;
+select R_pinky3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky3 ;
+select -tgl R_pinky3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky3CTRL_orientConstraint1 ;
+doDelete;
+
+//right pinky3 bufferCTRL
+
+select R_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky3CTRL_BUFFER";
+select R_pinky3CTRL_BUFFER;
+setAttr "R_pinky3CTRL_BUFFER.rotateOrder" 0;
+		select R_pinky3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky3 ;
+select -tgl R_pinky3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right pinky3 bufferCTRL_SDK
+
+select R_pinky3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_pinky3CTRL_SDK_BUFFER";
+select R_pinky3CTRL_SDK_BUFFER;
+setAttr "R_pinky3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_pinky3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_pinky3 ;
+select -tgl R_pinky3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_pinky3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent R_pinky3CTRL R_pinky3CTRL_SDK_BUFFER ;
+parent R_pinky3CTRL_SDK_BUFFER R_pinky3CTRL_BUFFER ;
+
+parent R_pinky2CTRL R_pinky2CTRL_SDK_BUFFER ;
+parent R_pinky2CTRL_SDK_BUFFER R_pinky2CTRL_BUFFER ;
+
+parent R_pinky1CTRL R_pinky1CTRL_SDK_BUFFER ;
+parent R_pinky1CTRL_SDK_BUFFER R_pinky1CTRL_BUFFER ;
+
+
+//thumb
+
+//right thumb1 
+
+select R_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_thumb1CTRL";
+select R_thumb1CTRL;
+setAttr "R_thumb1CTRL.rotateOrder" 3;
+select R_thumb1CTRL;
+setAttr "R_thumb1CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_thumb1CTRL;
+select R_thumb1CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb1 ;
+select -tgl R_thumb1CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb1CTRL_orientConstraint1 ;
+doDelete;
+
+//right thumb1 bufferCTRL
+
+select R_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb1CTRL_BUFFER";
+select R_thumb1CTRL_BUFFER;
+setAttr "R_thumb1CTRL_BUFFER.rotateOrder" 0;
+		select R_thumb1CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb1 ;
+select -tgl R_thumb1CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb1CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right thumb1 bufferCTRL_SDK
+
+select R_thumb1;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb1CTRL_SDK_BUFFER";
+select R_thumb1CTRL_SDK_BUFFER;
+setAttr "R_thumb1CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_thumb1CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb1 ;
+select -tgl R_thumb1CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb1CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right thumb2 
+
+select R_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_thumb2CTRL";
+select R_thumb2CTRL;
+setAttr "R_thumb2CTRL.rotateOrder" 3;
+select R_thumb2CTRL;
+setAttr "R_thumb2CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_thumb2CTRL;
+select R_thumb2CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb2 ;
+select -tgl R_thumb2CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb2CTRL_orientConstraint1 ;
+doDelete;
+
+//right thumb2 bufferCTRL
+
+select R_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb2CTRL_BUFFER";
+select R_thumb2CTRL_BUFFER;
+setAttr "R_thumb2CTRL_BUFFER.rotateOrder" 0;
+		select R_thumb2CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb2 ;
+select -tgl R_thumb2CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb2CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right thumb2 bufferCTRL_SDK
+
+select R_thumb2;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb2CTRL_SDK_BUFFER";
+select R_thumb2CTRL_SDK_BUFFER;
+setAttr "R_thumb2CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_thumb2CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb2 ;
+select -tgl R_thumb2CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb2CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right thumb3 
+
+select R_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	curve -d 1 -p 0.308426 0.105533 -0.110594 -p 0.308426 0.105533 0.121409 -p -0.0541921 0.0945656 0.121409 -p -0.0541921 0.0945656 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p 0.308426 0.105533 0.121409 -p 0.308426 0.105533 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0393659 -0.0907998 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.308426 0.105533 -0.110594 -p 0.303468 -0.108476 -0.110594 -p 0.303468 -0.108476 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -p -0.0541921 0.0945656 -0.110594 -p -0.0541921 0.0945656 0.121409 -p -0.0393659 -0.0907998 0.121409 -p -0.0393659 -0.0907998 -0.110594 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 7 -k 8 -k 9 -k 10 -k 11 -k 12 -k 13 -k 14 -k 15 -k 16 -k 17 -k 18 -k 19 -k 20 ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "curve1" "R_thumb3CTRL";
+select R_thumb3CTRL;
+setAttr "R_thumb3CTRL.rotateOrder" 3;
+select R_thumb3CTRL;
+setAttr "R_thumb3CTRLShape.overrideEnabled" 1;
+color -rgb 1 0 0 R_thumb3CTRL;
+select R_thumb3CTRL;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb3 ;
+select -tgl R_thumb3CTRL ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb3CTRL_orientConstraint1 ;
+doDelete;
+
+//right thumb3 bufferCTRL
+
+select R_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb3CTRL_BUFFER";
+select R_thumb3CTRL_BUFFER;
+setAttr "R_thumb3CTRL_BUFFER.rotateOrder" 0;
+		select R_thumb3CTRL_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb3 ;
+select -tgl R_thumb3CTRL_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb3CTRL_BUFFER_orientConstraint1 ;
+doDelete;
+
+//right thumb3 bufferCTRL_SDK
+
+select R_thumb3;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select -cl;
+	doGroup 0 1 1;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+rename "null1" "R_thumb3CTRL_SDK_BUFFER";
+select R_thumb3CTRL_SDK_BUFFER;
+setAttr "R_thumb3CTRL_SDK_BUFFER.rotateOrder" 0;
+		select R_thumb3CTRL_SDK_BUFFER;
+		makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select -r R_thumb3 ;
+select -tgl R_thumb3CTRL_SDK_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_thumb3CTRL_SDK_BUFFER_orientConstraint1 ;
+doDelete;
+
+//parenting the finger joint ctrls to the buffer
+
+parent R_thumb3CTRL R_thumb3CTRL_SDK_BUFFER ;
+parent R_thumb3CTRL_SDK_BUFFER R_thumb3CTRL_BUFFER ;
+
+parent R_thumb2CTRL R_thumb2CTRL_SDK_BUFFER ;
+parent R_thumb2CTRL_SDK_BUFFER R_thumb2CTRL_BUFFER ;
+
+parent R_thumb1CTRL R_thumb1CTRL_SDK_BUFFER ;
+parent R_thumb1CTRL_SDK_BUFFER R_thumb1CTRL_BUFFER ;
+
+//--------------------------------------------------
+
+
