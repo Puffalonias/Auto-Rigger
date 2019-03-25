@@ -18,4 +18,4 @@ Make Controls will make controls. These can be resized as desired, and made to f
 
 Set Controls will then set the controls and the skeleton, making it so that the skeleton is fully usable.
 
-At this point, the only thing that should be left is skinning. Please note that this autorigger is for research purposes only, and as such, there are bugs that have not been fixed. I am also a college student at the current time, so fixing code for something that only I use has not been a priority. If any bugs are encountered, feel free to note them and inform me.
+At this point, the only thing that should be left is skinning. Please note that this autorigger is for research purposes only, and as such, there are bugs that have not been fixed. I am also a college student at the current time, so fixing code for something that only I use has not been a priority. If any bugs are encountered, feel free to note them and inform me!
