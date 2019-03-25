@@ -1,0 +1,1324 @@
+//parent L_ankle_IK, L_ball_IK, and L_toe_IK to L_footCTRL
+
+parent L_ankle_IK L_footCTRL ;
+parent L_ball_IK L_footCTRL ;
+parent L_toe_IK L_footCTRL ;
+select -r L_ankle_IK L_ball_IK L_toe_IK ;
+HideSelectedObjects;
+
+
+//parent R_ankle_IK, R_ball_IK, and R_toe_IK to R_footCTRL
+
+parent R_ankle_IK R_footCTRL ;
+parent R_ball_IK R_footCTRL ;
+parent R_toe_IK R_footCTRL ;
+select -r R_ankle_IK R_ball_IK R_toe_IK ;
+HideSelectedObjects;
+
+//Applying Pole Vector to L_kneePV
+
+select L_kneePV ;
+select -add L_ankle_IK ;
+poleVectorConstraint -weight 1;
+
+//Applying Pole Vector to R_kneePV
+
+select R_kneePV ;
+select -add R_ankle_IK ;
+poleVectorConstraint -weight 1;
+
+//left
+
+select L_hipCTRL L_FK_hip;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_kneeCTRL L_FK_knee;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_ankleCTRL L_FK_ankle;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_ballCTRL L_FK_ball;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//right
+
+select -r R_hipCTRL R_FK_hip;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_kneeCTRL R_FK_knee;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_ankleCTRL R_FK_ankle;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_ballCTRL R_FK_ball;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//parenting leg buffers
+
+parent L_ballCTRL_BUFFER L_ankleCTRL;
+parent L_ankleCTRL_BUFFER L_kneeCTRL;
+parent L_kneeCTRL_BUFFER L_hipCTRL;
+select -r R_hipCTRL_BUFFER pelvisBIND ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+parent R_ballCTRL_BUFFER R_ankleCTRL;
+parent R_ankleCTRL_BUFFER R_kneeCTRL;
+parent R_kneeCTRL_BUFFER R_hipCTRL;
+select -r L_hipCTRL_BUFFER pelvisBIND ;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+//parenting the pelvis
+
+select hipCTRL pelvisBIND;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+//setting up FK arms
+
+//left
+
+select L_shoulderCTRL L_FK_shoulder;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_elbowCTRL L_FK_elbow;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_wristCTRL L_FK_wrist;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select L_shoulderCTRL_BUFFER L_clavicle;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+parent L_wristCTRL_BUFFER L_elbowCTRL;
+parent L_elbowCTRL_BUFFER L_shoulderCTRL;
+
+//FK wrist twist
+
+select -r L_wristCTRL ;
+shadingNode -asUtility multiplyDivide;
+rename "L_FK_Twist";
+
+setAttr "L_FK_Twist.input2X" 2;
+setAttr "L_FK_Twist.operation" 2;
+connectAttr -f L_wristCTRL.rotateX L_FK_Twist.input1X;
+select -r L_FK_forearm L_FK_wrist ;
+connectAttr -f L_FK_Twist.outputX L_FK_forearm.rotateX;
+connectAttr -f L_FK_Twist.outputX L_FK_wrist.rotateX;
+
+//right
+
+select R_shoulderCTRL R_FK_shoulder;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select R_elbowCTRL R_FK_elbow;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select R_wristCTRL R_FK_wrist;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select R_shoulderCTRL_BUFFER R_clavicle;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+parent R_wristCTRL_BUFFER R_elbowCTRL;
+parent R_elbowCTRL_BUFFER R_shoulderCTRL;
+
+//FK wrist twist
+
+select -r R_wristCTRL ;
+shadingNode -asUtility multiplyDivide;
+rename "R_FK_Twist";
+
+setAttr "R_FK_Twist.input2X" 2;
+setAttr "R_FK_Twist.operation" 2;
+connectAttr -f R_wristCTRL.rotateX R_FK_Twist.input1X;
+select -r R_FK_forearm R_FK_wrist ;
+connectAttr -f R_FK_Twist.outputX R_FK_forearm.rotateX;
+connectAttr -f R_FK_Twist.outputX R_FK_wrist.rotateX;
+
+//IK wrist Twist
+
+select -r L_IK_armCTRL ;
+select -r L_IK_forearm ;
+shadingNode -asUtility multiplyDivide;
+rename "L_IK_Twist";
+
+setAttr "L_IK_Twist.operation" 2;
+setAttr "L_IK_Twist.input2X" 2;
+connectAttr -f L_IK_armCTRL.rotateX L_IK_Twist.input1X;
+connectAttr -f L_IK_Twist.outputX L_IK_forearm.rotateX;
+
+
+//fingers
+
+//left
+
+//thumb
+
+select -r L_thumb1CTRL L_thumb1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_thumb2CTRL L_thumb2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_thumb3CTRL L_thumb3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//index
+
+select -r L_index1CTRL L_index1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_index2CTRL L_index2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_index3CTRL L_index3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//middle
+
+select -r L_middle1CTRL L_middle1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_middle2CTRL L_middle2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_middle3CTRL L_middle3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//ring
+
+select -r L_ring1CTRL L_ring1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_ring2CTRL L_ring2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_ring3CTRL L_ring3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//pinky
+
+select -r L_pinky1CTRL L_pinky1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_pinky2CTRL L_pinky2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r L_pinky3CTRL L_pinky3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+parent L_thumb3CTRL_BUFFER L_thumb2CTRL;
+parent L_thumb2CTRL_BUFFER L_thumb1CTRL;
+select L_handRoot L_thumb1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent L_index3CTRL_BUFFER L_index2CTRL;
+parent L_index2CTRL_BUFFER L_index1CTRL;
+select L_handRoot L_index1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent L_middle3CTRL_BUFFER L_middle2CTRL;
+parent L_middle2CTRL_BUFFER L_middle1CTRL;
+select L_handRoot L_middle1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent L_ring3CTRL_BUFFER L_ring2CTRL;
+parent L_ring2CTRL_BUFFER L_ring1CTRL;
+select L_handRoot L_ring1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent L_pinky3CTRL_BUFFER L_pinky2CTRL;
+parent L_pinky2CTRL_BUFFER L_pinky1CTRL;
+select L_handRoot L_pinky1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+//right
+
+//thumb
+
+select -r R_thumb1CTRL R_thumb1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_thumb2CTRL R_thumb2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_thumb3CTRL R_thumb3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//index
+
+select -r R_index1CTRL R_index1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_index2CTRL R_index2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_index3CTRL R_index3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//middle
+
+select -r R_middle1CTRL R_middle1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_middle2CTRL R_middle2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_middle3CTRL R_middle3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//ring
+
+select -r R_ring1CTRL R_ring1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_ring2CTRL R_ring2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_ring3CTRL R_ring3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+//pinky
+
+select -r R_pinky1CTRL R_pinky1 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_pinky2CTRL R_pinky2 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+select -r R_pinky3CTRL R_pinky3 ;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+
+parent R_thumb3CTRL_BUFFER R_thumb2CTRL;
+parent R_thumb2CTRL_BUFFER R_thumb1CTRL;
+select R_handRoot R_thumb1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent R_index3CTRL_BUFFER R_index2CTRL;
+parent R_index2CTRL_BUFFER R_index1CTRL;
+select R_handRoot R_index1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent R_middle3CTRL_BUFFER R_middle2CTRL;
+parent R_middle2CTRL_BUFFER R_middle1CTRL;
+select R_handRoot R_middle1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent R_ring3CTRL_BUFFER R_ring2CTRL;
+parent R_ring2CTRL_BUFFER R_ring1CTRL;
+select R_handRoot R_ring1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+parent R_pinky3CTRL_BUFFER R_pinky2CTRL;
+parent R_pinky2CTRL_BUFFER R_pinky1CTRL;
+select R_handRoot R_pinky1CTRL_BUFFER;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+
+//Applying Pole Vector to L_armPV
+
+select L_armPV ;
+select -add L_wrist_IK ;
+poleVectorConstraint -weight 1;
+
+//Applying Pole Vector to R_armPV
+
+select R_armPV ;
+select -add R_wrist_IK ;
+poleVectorConstraint -weight 1;
+
+//making arm buffers
+
+// Left IK
+
+select -cl;
+doGroup 0 1 1;
+rename "L_IK_arm_BUFFER";
+
+select L_shoulderBIND;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_IK_arm_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_IK_arm_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_shoulderBIND L_IK_arm_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_IK_arm_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_IK_arm_BUFFER L_clavicle;
+
+// Left FK
+
+select -cl;
+doGroup 0 1 1;
+rename "L_FK_arm_BUFFER";
+
+select L_shoulderBIND;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_FK_arm_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select L_FK_arm_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_shoulderBIND L_FK_arm_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r L_FK_arm_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent L_FK_arm_BUFFER L_clavicle;
+
+// Right IK
+
+select -cl;
+doGroup 0 1 1;
+rename "R_IK_arm_BUFFER";
+
+select R_shoulderBIND;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_IK_arm_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_IK_arm_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select L_shoulderBIND R_IK_arm_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_IK_arm_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_IK_arm_BUFFER R_clavicle;
+
+// Right FK
+
+select -cl;
+doGroup 0 1 1;
+rename "R_FK_arm_BUFFER";
+
+select R_shoulderBIND;
+string $selection[] = `ls -sl`; 
+$i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_FK_arm_BUFFER;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+select R_FK_arm_BUFFER;
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1;
+select R_shoulderBIND R_FK_arm_BUFFER;
+doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+orientConstraint -offset 0 0 0 -weight 1;
+select -r R_FK_arm_BUFFER_orientConstraint1 ;
+doDelete;
+
+parent R_FK_arm_BUFFER R_clavicle;
+
+parent L_IK_shoulder L_IK_arm_BUFFER;
+parent L_FK_shoulder L_FK_arm_BUFFER;
+parent R_IK_shoulder R_IK_arm_BUFFER;
+parent R_FK_shoulder R_FK_arm_BUFFER;
+
+//setting the clavicles
+
+//parent L_clavicle spine6;
+//parent R_clavicle spine6;
+
+//left
+
+//select L_clavicleCTRL L_clavicle;
+//doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+//orientConstraint -offset 0 0 0 -weight 1;
+
+//select L_clavicleCTRL_BUFFER spine6;
+//doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+//parentConstraint -mo -weight 1;
+
+//right
+
+//select R_clavicleCTRL R_clavicle;
+//doCreateOrientConstraintArgList 1 { "0","0","0","0","0","0","0","1","","1" };
+//orientConstraint -offset 0 0 0 -weight 1;
+
+//select spine6 R_clavicleCTRL_BUFFER;
+//doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+//parentConstraint -mo -weight 1;
+
+
+
+
+//NEED HELP HERE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//setting up rig hierarchy
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "Character";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "JOINTS";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "CONTROLS";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "NO_SCALE";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "GEOMETRY";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "ARMS";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "HANDS";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "LEGS";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "TORSO";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "HEAD";
+
+select -cl;
+doGroup 0 1 1;
+rename "null1" "SPINE";
+
+parent masterCTRL Character;
+parent JOINTS CONTROLS masterCTRL;
+parent GEOMETRY NO_SCALE;
+parent NO_SCALE Character;
+parent ARMS LEGS TORSO HEAD SPINE CONTROLS;
+parent HANDS ARMS;
+parent hipCTRL_BUFFER TORSO;
+
+parent L_hipCTRL_BUFFER L_kneeCTRL_BUFFER L_ankleCTRL_BUFFER L_ballCTRL_BUFFER R_hipCTRL_BUFFER R_kneeCTRL_BUFFER R_ankleCTRL_BUFFER R_ballCTRL_BUFFER L_kneePV_BUFFER R_kneePV_BUFFER L_footCTRL_BUFFER R_footCTRL_BUFFER L_IK_FK_Switch R_IK_FK_Switch LEGS;
+parent L_shoulderCTRL_BUFFER L_elbowCTRL_BUFFER L_wristCTRL_BUFFER L_IK_armCTRL_BUFFER R_shoulderCTRL_BUFFER R_elbowCTRL_BUFFER R_wristCTRL_BUFFER R_IK_armCTRL_BUFFER L_armPV_BUFFER R_armPV_BUFFER L_IK_FK_ArmSwitch R_IK_FK_ArmSwitch ARMS;
+parent L_handCTRL R_handCTRL HANDS;
+
+parent L_gimbalCTRL L_IK_armCTRL;
+parent L_wrist_IK L_stabilizer_IK L_gimbalCTRL;
+parent R_gimbalCTRL R_IK_armCTRL;
+parent R_wrist_IK R_stabilizer_IK R_gimbalCTRL;
+
+
+//fixing scaling issues
+connectAttr -f masterCTRL.scaleY masterCTRL.scaleX;
+connectAttr -f masterCTRL.scaleY masterCTRL.scaleZ;
+
+//hiding chains
+
+select -r L_FK_shoulder ;
+hide;
+select -r R_FK_shoulder ;
+hide;
+select -r L_IK_shoulder ;
+hide;
+select -r R_IK_shoulder ;
+hide;
+select -r L_FK_hip ;
+hide;
+select -r R_FK_hip ;
+hide;
+select -r L_IK_hip ;
+hide;
+select -r R_IK_hip ;
+hide;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//setting up handCTRL
+
+select L_handRoot L_handCTRL;
+doCreateParentConstraintArgList 1 { "1","0","0","0","0","0","0","0","1","","1" };
+parentConstraint -mo -weight 1;
+
+select -r L_handCTRL ;
+addAttr -ln "spread"  -at double  -min -10 -max 10 -dv 0 |Character|masterCTRL|CONTROLS|ARMS|HANDS|L_handCTRL;
+setAttr -e-keyable true |Character|masterCTRL|CONTROLS|ARMS|HANDS|L_handCTRL.spread;
+addAttr -ln "fist"  -at double  -min -10 -max 10 -dv 0 |Character|masterCTRL|CONTROLS|ARMS|HANDS|L_handCTRL;
+setAttr -e-keyable true |Character|masterCTRL|CONTROLS|ARMS|HANDS|L_handCTRL.fist;
+
+
+
+
+select -r L_thumb3CTRL_SDK_BUFFER ;
+select -add L_thumb2CTRL_SDK_BUFFER ;
+select -add L_thumb1CTRL_SDK_BUFFER ;
+select -add L_pinky3CTRL_SDK_BUFFER ;
+select -add L_pinky2CTRL_SDK_BUFFER ;
+select -add L_pinky1CTRL_SDK_BUFFER ;
+select -add L_ring3CTRL_SDK_BUFFER ;
+select -add L_ring2CTRL_SDK_BUFFER ;
+select -add L_ring1CTRL_SDK_BUFFER ;
+select -add L_middle3CTRL_SDK_BUFFER ;
+select -add L_middle2CTRL_SDK_BUFFER ;
+select -add L_middle1CTRL_SDK_BUFFER ;
+select -add L_index3CTRL_SDK_BUFFER ;
+select -add L_index2CTRL_SDK_BUFFER ;
+select -add L_index1CTRL_SDK_BUFFER ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateY; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateX; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateZ; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateZ;
+rotate -r -os -fo 0 0 -55.420965 ;
+select -r L_thumb3CTRL_SDK_BUFFER ;
+select -add L_thumb2CTRL_SDK_BUFFER ;
+select -add L_thumb1CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 45.732435 ;
+rotate -r -os -fo 0 0 -16.988994 ;
+select -r L_handCTRL ;
+setAttr "L_handCTRL.fist" 10;
+select -r L_pinky3CTRL_SDK_BUFFER ;
+select -add L_pinky2CTRL_SDK_BUFFER ;
+select -add L_pinky1CTRL_SDK_BUFFER ;
+select -add L_ring3CTRL_SDK_BUFFER ;
+select -add L_ring2CTRL_SDK_BUFFER ;
+select -add L_ring1CTRL_SDK_BUFFER ;
+select -add L_middle3CTRL_SDK_BUFFER ;
+select -add L_middle2CTRL_SDK_BUFFER ;
+select -add L_middle1CTRL_SDK_BUFFER ;
+select -add L_index3CTRL_SDK_BUFFER ;
+select -add L_index2CTRL_SDK_BUFFER ;
+select -add L_index1CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 -55.71797 ;
+select -r L_thumb3CTRL_SDK_BUFFER ;
+select -add L_thumb2CTRL_SDK_BUFFER ;
+select -add L_thumb1CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 -20.595258 ;
+rotate -r -os -fo 0 0 -9.115991 ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateY; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateZ; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateZ;
+select -r L_handCTRL ;
+setAttr "L_handCTRL.fist" -10;
+select -r L_thumb3CTRL_SDK_BUFFER ;
+select -add L_thumb2CTRL_SDK_BUFFER ;
+select -add L_thumb1CTRL_SDK_BUFFER ;
+select -add L_pinky3CTRL_SDK_BUFFER ;
+select -add L_pinky2CTRL_SDK_BUFFER ;
+select -add L_pinky1CTRL_SDK_BUFFER ;
+select -add L_ring3CTRL_SDK_BUFFER ;
+select -add L_ring2CTRL_SDK_BUFFER ;
+select -add L_ring1CTRL_SDK_BUFFER ;
+select -add L_middle3CTRL_SDK_BUFFER ;
+select -add L_middle2CTRL_SDK_BUFFER ;
+select -add L_middle1CTRL_SDK_BUFFER ;
+select -add L_index3CTRL_SDK_BUFFER ;
+select -add L_index2CTRL_SDK_BUFFER ;
+select -add L_index1CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 29.617772 ;
+rotate -r -os -fo 0 0 -11.096512 ;
+rotate -r -os -fo 0 0 5.622492 ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateY; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateZ;
+select -cl  ;
+select -r L_handCTRL ;
+setAttr "L_handCTRL.fist" 10;
+setAttr "L_handCTRL.fist" 5;
+select -r L_thumb3CTRL_SDK_BUFFER ;
+select -add L_thumb2CTRL_SDK_BUFFER ;
+select -add L_thumb1CTRL_SDK_BUFFER ;
+setAttr "L_thumb1CTRL_SDK_BUFFER.rotateZ" 0;
+setAttr "L_thumb3CTRL_SDK_BUFFER.rotateZ" 0;
+setAttr "L_thumb2CTRL_SDK_BUFFER.rotateZ" 0;
+select -r L_index1CTRL_SDK_BUFFER ;
+select -add L_index2CTRL_SDK_BUFFER ;
+select -add L_index3CTRL_SDK_BUFFER ;
+setAttr "L_index3CTRL_SDK_BUFFER.rotateZ" 0;
+setAttr "L_index1CTRL_SDK_BUFFER.rotateZ" 0;
+setAttr "L_index2CTRL_SDK_BUFFER.rotateZ" 0;
+select -r L_middle1CTRL_BUFFER ;
+select -r L_middle1CTRL_SDK_BUFFER ;
+select -add L_middle2CTRL_BUFFER ;
+select -add L_middle2CTRL_SDK_BUFFER ;
+select -d L_middle2CTRL_BUFFER ;
+select -add L_middle3CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 22.716033 ;
+select -r L_ring1CTRL_BUFFER ;
+select -r L_ring1CTRL_SDK_BUFFER ;
+select -add L_ring2CTRL_SDK_BUFFER ;
+select -add L_ring3CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 18.552264 ;
+select -r L_pinky1CTRL_SDK_BUFFER ;
+select -add L_pinky2CTRL_SDK_BUFFER ;
+select -add L_pinky3CTRL_SDK_BUFFER ;
+rotate -r -os -fo 0 0 10.553845 ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb2CTRL_SDK_BUFFER.rotateZ; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_thumb1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_pinky1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_ring1CTRL_SDK_BUFFER.rotateZ; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle3CTRL_SDK_BUFFER.rotateZ; 
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_middle1CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index3CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index2CTRL_SDK_BUFFER.rotateZ;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateX;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateY;
+setDrivenKeyframe -currentDriver L_handCTRL.fist L_index1CTRL_SDK_BUFFER.rotateZ;
+setAttr "L_handCTRL.fist" 0;
+
+parent L_handRoot L_palmBIND;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Locking and hiding necessary channels
+
+//masterCTRL
+select -r masterCTRL;
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.sz";
+
+//left
+
+select -r L_hipCTRL ;
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL.v";
+
+select -r L_hipCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_hipCTRL_BUFFER.v";
+
+select -r L_kneeCTRL ;
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.rx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.rz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL.v";
+
+select -r L_kneeCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_kneeCTRL_BUFFER.v";
+
+select -r L_ankleCTRL ;
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL.v";
+
+select -r L_ankleCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_ankleCTRL_BUFFER.v";
+
+select -r L_ballCTRL ;
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.rx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.ry";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL.v";
+
+select -r L_ballCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_ballCTRL_BUFFER.v";
+
+//right
+
+select -r R_hipCTRL ;
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL.v";
+
+select -r R_hipCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_hipCTRL_BUFFER.v";
+
+select -r R_kneeCTRL ;
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.rx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.rz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL.v";
+
+select -r R_kneeCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_kneeCTRL_BUFFER.v";
+
+select -r R_ankleCTRL ;
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL.v";
+
+select -r R_ankleCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_ankleCTRL_BUFFER.v";
+
+select -r R_ballCTRL ;
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.rx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.ry";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL.v";
+
+select -r R_ballCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_ballCTRL_BUFFER.v";
+
+//pelvis
+
+select hipCTRL ;
+setAttr -lock true -keyable false -channelBox false "hipCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "hipCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "hipCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "hipCTRL.v";
+
+select hipCTRL_BUFFER ;
+setAttr -lock true -keyable false -channelBox false "hipCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "hipCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "hipCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "hipCTRL_BUFFER.v";
+
+//arm controls
+
+//left
+
+select L_shoulderCTRL;
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL.v";
+
+select L_shoulderCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_shoulderCTRL_BUFFER.v";
+
+select L_elbowCTRL;
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL.v";
+
+select L_elbowCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_elbowCTRL_BUFFER.v";
+
+select L_wristCTRL;
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL.v";
+
+select L_wristCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "L_wristCTRL_BUFFER.v";
+
+//right
+
+select R_shoulderCTRL;
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL.v";
+
+select R_shoulderCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_shoulderCTRL_BUFFER.v";
+
+select R_elbowCTRL;
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL.v";
+
+select R_elbowCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_elbowCTRL_BUFFER.v";
+
+select R_wristCTRL;
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.tx";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.ty";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.tz";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.sx";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.sy";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.sz";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL.v";
+
+select R_wristCTRL_BUFFER;
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.tx";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.ty";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.tz";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.rx";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.ry";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.rz";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.sx";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.sy";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.sz";
+setAttr -lock true -keyable false -channelBox false "R_wristCTRL_BUFFER.v";
+
+
+//need cleanup on IK knee PV and IK ankle CTRL
+
+
