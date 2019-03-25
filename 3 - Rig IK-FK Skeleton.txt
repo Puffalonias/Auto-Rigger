@@ -1,0 +1,377 @@
+//Making IK/FK handles for the legs
+
+//Duplicating leg joints twice to make IK and FK chains
+
+//Duplicating left leg twice
+
+select L_hipBIND;
+duplicate -rr;
+xform -cpc;
+rename "L_IK_hipBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select L_IK_hip_delete;
+rename "L_IK_hip";
+select L_knee_delete;
+rename "L_IK_knee";
+select L_ankle_delete;
+rename "L_IK_ankle";
+select L_ball_delete;
+rename "L_IK_ball";
+select L_toe_delete;
+rename "L_IK_toe";
+
+select L_hipBIND;
+duplicate -rr;
+xform -cpc;
+rename "L_FK_hipBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select L_FK_hip_delete;
+rename "L_FK_hip";
+select L_knee_delete;
+rename "L_FK_knee";
+select L_ankle_delete;
+rename "L_FK_ankle";
+select L_ball_delete;
+rename "L_FK_ball";
+select L_toe_delete;
+rename "L_FK_toe";
+
+setAttr "L_FK_hip.rotateOrder" 3;
+setAttr "L_FK_knee.rotateOrder" 3;
+setAttr "L_FK_ankle.rotateOrder" 3;
+setAttr "L_FK_ball.rotateOrder" 3;
+setAttr "L_FK_toe.rotateOrder" 3;
+
+//Duplicating right leg twice
+
+select R_hipBIND;
+duplicate -rr;
+xform -cpc;
+rename "R_IK_hipBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select R_IK_hip_delete;
+rename "R_IK_hip";
+select R_knee_delete;
+rename "R_IK_knee";
+select R_ankle_delete;
+rename "R_IK_ankle";
+select R_ball_delete;
+rename "R_IK_ball";
+select R_toe_delete;
+rename "R_IK_toe";
+
+select R_hipBIND;
+duplicate -rr;
+xform -cpc;
+rename "R_FK_hipBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select R_FK_hip_delete;
+rename "R_FK_hip";
+select R_knee_delete;
+rename "R_FK_knee";
+select R_ankle_delete;
+rename "R_FK_ankle";
+select R_ball_delete;
+rename "R_FK_ball";
+select R_toe_delete;
+rename "R_FK_toe";
+
+setAttr "R_FK_hip.rotateOrder" 3;
+setAttr "R_FK_knee.rotateOrder" 3;
+setAttr "R_FK_ankle.rotateOrder" 3;
+setAttr "R_FK_ball.rotateOrder" 3;
+setAttr "R_FK_toe.rotateOrder" 3;
+
+//--------------------------------------------------
+
+// Add IK rig to Left leg (Rotate-Plane Solver)
+
+select -r "L_IK_hip";
+select -add L_IK_ankle ;
+ikHandle;
+xform -cpc;
+rename "L_ankle_IK";
+
+select effector1;
+rename "L_ankle_effector";
+
+// Add IK rig to Right leg (Rotate-Plane Solver)
+
+select -r R_IK_hip ;
+select -add R_IK_ankle ;
+ikHandle;
+xform -cpc;
+rename "R_ankle_IK";
+
+select effector1;
+rename "R_ankle_effector";
+
+// Add IK rig to Left leg (Single-Chain Solver)
+
+select -r L_IK_ankle ;
+select -add L_IK_ball ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "L_ball_IK";
+
+select effector1;
+rename "L_ball_effector";
+
+// Add IK rig to Right leg (Single-Chain Solver)
+
+select -r R_IK_ankle ;
+select -add R_IK_ball ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "R_ball_IK";
+
+select effector1;
+rename "R_ball_effector";
+
+// Add IK rig to Left leg (Single-Chain Solver)
+
+select -r L_IK_ball ;
+select -add L_IK_toe ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "L_toe_IK";
+
+select effector1;
+rename "L_toe_effector";
+
+// Add IK rig to Right leg (Single-Chain Solver)
+
+select -r R_IK_ball ;
+select -add R_IK_toe ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "R_toe_IK";
+
+select effector1;
+rename "R_toe_effector";
+
+//--------------------------------------------------
+
+//Making IK/FK handles for the arms
+
+//Duplicating arm joints twice to make IK and FK chains
+
+//Duplicating left arm twice
+
+select L_shoulderBIND;
+duplicate -rr;
+xform -cpc;
+rename "L_IK_shoulderBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select L_IK_shoulder_delete;
+rename "L_IK_shoulder";
+parent -w L_IK_shoulder;
+select L_elbow_delete;
+rename "L_IK_elbow";
+select L_forearm_delete;
+rename "L_IK_forearm";
+select L_wrist_delete;
+rename "L_IK_wrist";
+select L_palm_delete;
+rename "L_IK_palm";
+
+select L_shoulderBIND;
+duplicate -rr;
+xform -cpc;
+rename "L_FK_shoulderBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select L_FK_shoulder_delete;
+rename "L_FK_shoulder";
+parent -w L_FK_shoulder;
+select L_elbow_delete;
+rename "L_FK_elbow";
+select L_forearm_delete;
+rename "L_FK_forearm";
+select L_wrist_delete;
+rename "L_FK_wrist";
+select L_palm_delete;
+rename "L_FK_palm";
+
+//Duplicating right arm twice
+
+select R_shoulderBIND;
+duplicate -rr;
+xform -cpc;
+rename "R_IK_shoulderBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select R_IK_shoulder_delete;
+rename "R_IK_shoulder";
+parent -w R_IK_shoulder;
+select R_elbow_delete;
+rename "R_IK_elbow";
+select R_forearm_delete;
+rename "R_IK_forearm";
+select R_wrist_delete;
+rename "R_IK_wrist";
+select R_palm_delete;
+rename "R_IK_palm";
+
+select R_shoulderBIND;
+duplicate -rr;
+xform -cpc;
+rename "R_FK_shoulderBIND";
+searchReplaceNames "BIND" "_delete" "hierarchy";
+
+select R_FK_shoulder_delete;
+rename "R_FK_shoulder";
+parent -w R_FK_shoulder;
+select R_elbow_delete;
+rename "R_FK_elbow";
+select R_forearm_delete;
+rename "R_FK_forearm";
+select R_wrist_delete;
+rename "R_FK_wrist";
+select R_palm_delete;
+rename "R_FK_palm";
+
+//--------------------------------------------------
+
+
+// Add IK rig to left arm (Rotate-Plane Solver)
+
+select -r L_IK_shoulder ;
+select -add L_IK_forearm ;
+ikHandle;
+xform -cpc;
+rename "L_wrist_IK";
+
+select effector1;
+rename "L_arm_effector";
+
+select L_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select L_arm_effector.scalePivot L_arm_effector.rotatePivot ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+// Add IK stabilizer to left arm (Single-Chain Solver)
+
+select L_IK_wrist ;
+select -add L_IK_palm ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "L_stabilizer_IK";
+
+select effector1;
+rename "L_stabilizer_effector";
+
+// Add IK rig to right arm (Rotate-Plane Solver)
+
+select R_IK_shoulder ;
+select -add R_IK_forearm ;
+ikHandle;
+xform -cpc;
+rename "R_wrist_IK";
+
+select effector1;
+rename "R_arm_effector";
+
+select R_IK_wrist;
+float $getPvPos[];
+string $selection[] = `ls -sl`; 
+int $i = 0; 
+for ($i =0; size ($selection) > $i; $i++) {
+	$getPvPos= `xform -q -ws -piv $selection[$i]`; 
+	select R_arm_effector.scalePivot R_arm_effector.rotatePivot ;
+	xform -ws -t $getPvPos[0] $getPvPos[1] $getPvPos[2]; 
+}
+
+// Add IK stabilizer to right arm (Single-Chain Solver)
+
+select R_IK_wrist ;
+select -add R_IK_palm ;
+ikHandle -sol ikSCsolver;
+xform -cpc;
+rename "R_stabilizer_IK";
+
+select effector1;
+rename "R_stabilizer_effector";
+
+
+//--------------------------------------------------
+
+
+// Add IK rig to the sprine (IK-Spline Handle)
+
+// Making spineCRV
+
+//need locations of joints
+
+curve -d 3 -p 0 7.623 -0.228 -p 0 7.783789 -0.228 -p 0 8.105367 -0.228 -p 0 8.711534 -0.228 -p 0 9.2845 -0.228 -p 0 9.866467 -0.228 -p 0 10.445633 -0.228 -p 0 10.833211 -0.228 -p 0 11.027 -0.228 -k 0 -k 0 -k 0 -k 1 -k 2 -k 3 -k 4 -k 5 -k 6 -k 6 -k 6 ;
+
+//rename curve
+select -r curve1 ;
+rename "curve1" "spineCRV";
+
+select -r spine1 ;
+select -add spineEnd ;
+select -add spineCRV ;
+ikHandle -sol ikSplineSolver -ccv false;
+select -add spineCRV ;
+
+select -r ikHandle1 ;
+rename "ikHandle1" "spineIK";
+
+select -r spine1 ;
+duplicate -rr;
+
+//select -r spine7|spine2|spine3|spine4|spine5|spine6|L_clavicle ;
+//select -add spine7|spine2|spine3|spine4|spine5|spine6|R_clavicle ;
+select -r spine7|pelvisBIND ;
+select -add spine7|pelvisBIND|R_hipBIND ;
+select -add spine7|pelvisBIND|L_IK_hip ;
+select -add spine7|pelvisBIND|L_FK_hip ;
+select -add spine7|pelvisBIND|R_IK_hip ;
+select -add spine7|pelvisBIND|R_FK_hip ;
+doDelete;
+
+select -r spine7;
+rename "spine7" "hipSpineJNT";
+select -r hipSpineJNT|spine2|spine3|spine4|spine5|spine6|spineEnd ;
+rename "hipSpineJNT|spine2|spine3|spine4|spine5|spine6|spineEnd" "shoulderSpineJNT";
+
+select -r shoulderSpineJNT ;
+parent -w;
+select -r hipSpineJNT|spine2 ;
+doDelete;
+
+select -r shoulderSpineJNT ;
+setAttr "shoulderSpineJNT.radius" 3;
+
+select -r hipSpineJNT ;
+setAttr "hipSpineJNT.radius" 3;
+
+select -r hipSpineJNT ;
+select -add shoulderSpineJNT ;
+select -add spineCRV ;
+	
+
+
+select -r hipSpineJNT ;
+select -add shoulderSpineJNT ;
+select -add spineCRV ;
+skinCluster -tsb -mi 5 -dr 4;
+
+select -r shoulderSpineJNT ;
+color -ud 1 shoulderSpineJNT;
+
+select -r hipSpineJNT ;
+color -ud 1 hipSpineJNT;
+
+
