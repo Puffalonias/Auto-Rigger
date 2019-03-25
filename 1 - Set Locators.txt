@@ -1,0 +1,532 @@
+spaceLocator -p 0 7.374 -0.163;
+CenterPivot;
+xform -cpc;
+rename "pelvisLocator";
+// Result: pelvisLocator // 
+
+//Left Leg
+
+spaceLocator -p 0.790 7.167 -0.161;
+CenterPivot;
+xform -cpc;
+rename "L_hipLocator";
+// Result: L_hip // 
+
+spaceLocator -p 0.818 3.991 0.080;
+CenterPivot;
+xform -cpc;
+rename "L_kneeLocator";
+// Result: L_knee // 
+
+spaceLocator -p 0.878 0.807 -0.262;
+CenterPivot;
+xform -cpc;
+rename "L_ankleLocator";
+// Result: L_ankle // 
+
+spaceLocator -p 0.881 0.197 0.737;
+CenterPivot;
+xform -cpc;
+rename "L_ballLocator";
+// Result: L_ball // 
+
+spaceLocator -p 0.876 0.197 1.562;
+CenterPivot;
+xform -cpc;
+rename "L_toeLocator";
+// Result: L_toe // 
+
+//--------------------------------------------------
+
+//Right Leg
+
+spaceLocator -p -0.790 7.167 -0.161;
+CenterPivot;
+xform -cpc;
+rename "R_hipLocator";
+// Result: R_hip // 
+
+spaceLocator -p -0.818 3.991 0.080;
+CenterPivot;
+xform -cpc;
+rename "R_kneeLocator";
+// Result: R_knee // 
+
+spaceLocator -p -0.878 0.807 -0.262;
+CenterPivot;
+xform -cpc;
+rename "R_ankleLocator";
+// Result: R_ankle // 
+
+spaceLocator -p -0.881 0.197 0.737;
+CenterPivot;
+xform -cpc;
+rename "R_ballLocator";
+// Result: R_ball // 
+
+spaceLocator -p -0.876 0.197 1.562;
+CenterPivot;
+xform -cpc;
+rename "R_toeLocator";
+// Result: R_toe // 
+
+//--------------------------------------------------
+
+//Spine
+
+spaceLocator -p 0 7.623 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine1Locator";
+// Result: spine1Locator // 
+
+spaceLocator -p 0 8.126 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine2Locator";
+// Result: spine2Locator // 
+
+spaceLocator -p 0 8.706 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine3Locator";
+// Result: spine3Locator // 
+
+spaceLocator -p 0 9.286 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine4Locator";
+// Result: spine4Locator // 
+
+spaceLocator -p 0 9.866 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine5Locator";
+// Result: spine5Locator //  
+
+spaceLocator -p 0 10.446 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spine6Locator";
+// Result: spine6Locator // 
+
+spaceLocator -p 0 11.027 -0.228;
+CenterPivot;
+xform -cpc;
+rename "spineEndLocator";
+// Result: spineEndLocator // 
+
+//--------------------------------------------------
+
+//Neck & Head
+
+spaceLocator -p 0 11.027 -0.228;
+CenterPivot;
+xform -cpc;
+rename "neckALocator";
+// Result: "neckALocator // 
+
+spaceLocator -p 0 11.406 0.156;
+CenterPivot;
+xform -cpc;
+rename "neckBLocator";
+// Result: "neckBLocator //  
+
+spaceLocator -p 0 12.149 0.417;
+CenterPivot;
+xform -cpc;
+rename "headLocator";
+// Result: headLocator // 
+
+spaceLocator -p 0 14.509 0.417;
+CenterPivot;
+xform -cpc;
+rename "skullLocator";
+// Result: skullLocator // 
+
+spaceLocator -p 0 12.932 0.758;
+CenterPivot;
+xform -cpc;
+rename "eyeBaseLocator";
+// Result: eyeBaseLocator //  
+
+spaceLocator -p 0 11.858 0.540;
+CenterPivot;
+xform -cpc;
+rename "jawLocator";
+// Result: jawLocator // 
+
+spaceLocator -p 0 11.394 1.491;
+CenterPivot;
+xform -cpc;
+rename "chinLocator";
+// Result: chinLocator // 
+
+//--------------------------------------------------
+
+// Eyes
+
+spaceLocator -p 0.374 12.935 1.287;
+CenterPivot;
+xform -cpc;
+rename "L_eyeRootLocator";
+// Result: L_eyeRootLocator // 
+
+spaceLocator -p 0.374 12.935 1.919;
+CenterPivot;
+xform -cpc;
+rename "L_eyeDIRLocator";
+// Result: L_eyeDIRLocator //  
+
+spaceLocator -p -0.374 12.935 1.287;
+CenterPivot;
+xform -cpc;
+rename "R_eyeRootLocator";
+// Result: R_eyeRootLocator // 
+
+spaceLocator -p -0.374 12.935 1.919;
+CenterPivot;
+xform -cpc;
+rename "R_eyeDIRLocator";
+// Result: R_eyeDIRLocator // 
+
+//--------------------------------------------------
+
+//Left Arm
+
+spaceLocator -p 0.534 10.636 0.193;
+CenterPivot;
+xform -cpc;
+rename "L_clavicleLocator";
+// Result: L_clavicleLocator // 
+
+spaceLocator -p 1.452 10.751 -0.216;
+CenterPivot;
+xform -cpc;
+rename "L_shoulderLocator";
+// Result: L_shoulderLocator // 
+
+spaceLocator -p 3.183 8.801 -0.419;
+CenterPivot;
+xform -cpc;
+rename "L_elbowLocator";
+// Result: L_elbowLocator // 
+
+spaceLocator -p 3.993 7.935 -0.251;
+CenterPivot;
+xform -cpc;
+rename "L_forearmLocator";
+// Result: L_forearmLocator // 
+
+spaceLocator -p 4.748 7.142 -0.093;
+CenterPivot;
+xform -cpc;
+rename "L_wristLocator";
+// Result: L_wristLocator // 
+
+spaceLocator -p 4.963 6.921 -0.048;
+CenterPivot;
+xform -cpc;
+rename "L_palmLocator";
+// Result: L_palmLocator // 
+
+//--------------------------------------------------
+
+//Left Hand
+
+spaceLocator -p 5.223 6.672 0.002;
+CenterPivot;
+xform -cpc;
+rename "L_handRootLocator";
+// Result: L_handRootLocator // 
+
+spaceLocator -p 5.414 6.473 0.306;
+CenterPivot;
+xform -cpc;
+rename "L_index1Locator";
+// Result: L_index1Locator // 
+
+spaceLocator -p 5.584 6.211 0.306;
+CenterPivot;
+xform -cpc;
+rename "L_index2Locator";
+// Result: L_index2Locator // 
+
+spaceLocator -p 5.688 6.014 0.306;
+CenterPivot;
+xform -cpc;
+rename "L_index3Locator";
+// Result: L_index3Locator // 
+
+spaceLocator -p 5.771 5.723 0.306;
+CenterPivot;
+xform -cpc;
+rename "L_index4Locator";
+// Result: L_index4Locator // 
+
+spaceLocator -p 5.499 6.449 0.111;
+CenterPivot;
+xform -cpc;
+rename "L_middle1Locator";
+// Result: L_middle1Locator // 
+
+spaceLocator -p 5.717 6.211 0.111;
+CenterPivot;
+xform -cpc;
+rename "L_middle2Locator";
+// Result: L_middle2Locator // 
+
+spaceLocator -p 5.842 6.014 0.111;
+CenterPivot;
+xform -cpc;
+rename "L_middle3Locator";
+// Result: L_middle3Locator // 
+
+spaceLocator -p 5.98 5.723 0.111;
+CenterPivot;
+xform -cpc;
+rename "L_middle4Locator";
+// Result: L_middle4Locator // 
+
+spaceLocator -p 5.499 6.417 -0.127;
+CenterPivot;
+xform -cpc;
+rename "L_ring1Locator";
+// Result: L_ring1Locator // 
+
+spaceLocator -p 5.69 6.177 -0.127;
+CenterPivot;
+xform -cpc;
+rename "L_ring2Locator";
+// Result: L_ring2Locator // 
+
+spaceLocator -p 5.801 5.955 -0.127;
+CenterPivot;
+xform -cpc;
+rename "L_ring3Locator";
+// Result: L_ring3Locator // 
+
+spaceLocator -p 5.905 5.576 -0.127;
+CenterPivot;
+xform -cpc;
+rename "L_ring4Locator";
+// Result: L_ring4Locator // 
+
+spaceLocator -p 5.448 6.417 -0.333;
+CenterPivot;
+xform -cpc;
+rename "L_pinky1Locator";
+// Result: L_pinkey1Locator // 
+
+spaceLocator -p 5.602 6.215 -0.333;
+CenterPivot;
+xform -cpc;
+rename "L_pinky2Locator";
+// Result: L_pinkey2Locator // 
+
+spaceLocator -p 5.709 6.004 -0.333;
+CenterPivot;
+xform -cpc;
+rename "L_pinky3Locator";
+// Result: L_pinkey3Locator // 
+
+spaceLocator -p 5.753 5.753 -0.333;
+CenterPivot;
+xform -cpc;
+rename "L_pinky4Locator";
+// Result: L_pinkey4Locator // 
+
+spaceLocator -p 4.763 6.828 0.288;
+CenterPivot;
+xform -cpc;
+rename "L_thumb1Locator";
+// Result: L_thumb1Locator // 
+
+spaceLocator -p 4.763 6.659 0.479;
+CenterPivot;
+xform -cpc;
+rename "L_thumb2Locator";
+// Result: L_thumb2Locator // 
+
+spaceLocator -p 4.763 6.459 0.688;
+CenterPivot;
+xform -cpc;
+rename "L_thumb3Locator";
+// Result: L_thumb3Locator // 
+
+spaceLocator -p 4.763 6.132 0.885;
+CenterPivot;
+xform -cpc;
+rename "L_thumb4Locator";
+// Result: L_thumb4Locator // 
+
+//--------------------------------------------------
+
+//RightArm
+
+spaceLocator -p -0.534 10.636 0.193;
+CenterPivot;
+xform -cpc;
+rename "R_clavicleLocator";
+// Result: R_clavicleLocator // 
+
+spaceLocator -p -1.452 10.751 -0.216;
+CenterPivot;
+xform -cpc;
+rename "R_shoulderLocator";
+// Result: R_shoulderLocator // 
+
+spaceLocator -p -3.183 8.801 -0.419;
+CenterPivot;
+xform -cpc;
+rename "R_elbowLocator";
+// Result: R_elbowLocator // 
+
+spaceLocator -p -3.993 7.935 -0.251;
+CenterPivot;
+xform -cpc;
+rename "R_forearmLocator";
+// Result: R_forearmLocator // 
+
+spaceLocator -p -4.748 7.142 -0.093;
+CenterPivot;
+xform -cpc;
+rename "R_wristLocator";
+// Result: R_wristLocator // 
+
+spaceLocator -p -4.963 6.921 -0.048;
+CenterPivot;
+xform -cpc;
+rename "R_palmLocator";
+// Result: R_palmLocator // 
+
+//--------------------------------------------------
+
+//Right Hand
+
+spaceLocator -p -5.223 6.672 0.002;
+CenterPivot;
+xform -cpc;
+rename "R_handRootLocator";
+// Result: R_handRootLocator // 
+
+spaceLocator -p -5.372 6.449 0.306;
+CenterPivot;
+xform -cpc;
+rename "R_index1Locator";
+// Result: R_index1Locator // 
+
+spaceLocator -p -5.584 6.211 0.306;
+CenterPivot;
+xform -cpc;
+rename "R_index2Locator";
+// Result: R_index2Locator // 
+
+spaceLocator -p -5.688 6.014 0.306;
+CenterPivot;
+xform -cpc;
+rename "R_index3Locator";
+// Result: R_index3Locator // 
+
+spaceLocator -p -5.771 5.723 0.306;
+CenterPivot;
+xform -cpc;
+rename "R_index4Locator";
+// Result: R_index4Locator // 
+
+spaceLocator -p -5.499 6.449 0.111;
+CenterPivot;
+xform -cpc;
+rename "R_middle1Locator";
+// Result: R_middle1Locator // 
+
+spaceLocator -p -5.717 6.211 0.111;
+CenterPivot;
+xform -cpc;
+rename "R_middle2Locator";
+// Result: R_middle2Locator // 
+
+spaceLocator -p -5.842 6.014 0.111;
+CenterPivot;
+xform -cpc;
+rename "R_middle3Locator";
+// Result: R_middle3Locator // 
+
+spaceLocator -p -5.98 5.723 0.111;
+CenterPivot;
+xform -cpc;
+rename "R_middle4Locator";
+// Result: R_middle4Locator // 
+
+spaceLocator -p -5.499 6.417 -0.127;
+CenterPivot;
+xform -cpc;
+rename "R_ring1Locator";
+// Result: R_ring1Locator // 
+
+spaceLocator -p -5.69 6.177 -0.127;
+CenterPivot;
+xform -cpc;
+rename "R_ring2Locator";
+// Result: R_ring2Locator // 
+
+spaceLocator -p -5.801 5.955 -0.127;
+CenterPivot;
+xform -cpc;
+rename "R_ring3Locator";
+// Result: R_ring3Locator // 
+
+spaceLocator -p -5.905 5.576 -0.127;
+CenterPivot;
+xform -cpc;
+rename "R_ring4Locator";
+// Result: R_ring4Locator // 
+
+spaceLocator -p -5.448 6.417 -0.333;
+CenterPivot;
+xform -cpc;
+rename "R_pinky1Locator";
+// Result: R_pinkey1Locator // 
+
+spaceLocator -p -5.602 6.215 -0.333;
+CenterPivot;
+xform -cpc;
+rename "R_pinky2Locator";
+// Result: R_pinkey2Locator // 
+
+spaceLocator -p -5.709 6.004 -0.333;
+CenterPivot;
+xform -cpc;
+rename "R_pinky3Locator";
+// Result: R_pinkey3Locator // 
+
+spaceLocator -p -5.753 5.753 -0.333;
+CenterPivot;
+xform -cpc;
+rename "R_pinky4Locator";
+// Result: R_pinkey4Locator // 
+
+spaceLocator -p -4.763 6.828 0.288;
+CenterPivot;
+xform -cpc;
+rename "R_thumb1Locator";
+// Result: R_thumb1Locator // 
+
+spaceLocator -p -4.763 6.659 0.479;
+CenterPivot;
+xform -cpc;
+rename "R_thumb2Locator";
+// Result: R_thumb2Locator // 
+
+spaceLocator -p -4.763 6.459 0.688;
+CenterPivot;
+xform -cpc;
+rename "R_thumb3Locator";
+// Result: R_thumb3Locator // 
+
+spaceLocator -p -4.763 6.132 0.885;
+CenterPivot;
+xform -cpc;
+rename "R_thumb4Locator";
+// Result: R_thumb4Locator // 
+
